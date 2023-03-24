@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/models/payment_methods.dart';
 import 'package:paytmclone/widgets/benefits_container.dart';
@@ -7,7 +8,7 @@ import 'package:paytmclone/widgets/bottom_blue_container.dart';
 import 'package:paytmclone/widgets/featured_widget.dart';
 import 'package:paytmclone/widgets/loans_container.dart';
 import 'package:paytmclone/widgets/payment_methods.dart';
-import 'package:paytmclone/widgets/upi_lite.dart';
+import 'package:paytmclone/widgets/upi_lite_container.dart';
 import 'package:paytmclone/widgets/upi_money_transfer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -211,9 +212,19 @@ class DashboardScreen extends StatelessWidget {
         saleText: '',
       ),
     ];
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     PageController pageController = PageController();
+    final double phoneHeight = MediaQuery.of(context).size.height;
+    final double phoneWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: const Color(0xffF5F8FD),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        width: phoneWidth - 30,
+        child: const AppDrawerWidget(),
+      ),
       appBar: AppBar(
         backgroundColor: const Color(0xffA5E4FF),
         elevation: 0,
@@ -223,11 +234,16 @@ class DashboardScreen extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               ClipOval(
-                child: Image.asset(
-                  'assets/images/images.png',
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    scaffoldKey.currentState!.openDrawer();
+                  },
+                  child: Image.asset(
+                    'assets/images/images.png',
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(

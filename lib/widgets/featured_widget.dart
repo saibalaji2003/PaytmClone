@@ -29,52 +29,53 @@ class FeaturedWidget extends StatelessWidget {
                   Positioned(
                     top: 0,
                     right: 17,
-                    child: featuredModel.saleContainerShown
-                        ? Container(
-                            // padding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              color: const Color(0xffFFD766),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Text(
-                              featuredModel.saleText,
-                              style: TextStyle(
-                                color: featuredModel.saleTextShown
-                                    ? Colors.black
-                                    : Colors.transparent,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 11,
-                              ),
-                            ),
-                          )
-                        : const SizedBox(),
-                  )
+                    child: Container(
+                      // padding: const EdgeInsets.all(3),
+                      decoration: BoxDecoration(
+                        color: featuredModel.saleContainerShown
+                            ? const Color(0xffFFD766)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        featuredModel.saleText,
+                        style: TextStyle(
+                          color: featuredModel.saleTextShown
+                              ? Colors.black
+                              : Colors.transparent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               Positioned(
-                  bottom: -1,
-                  right: -1,
-                  child: featuredModel.isAdShown
-                      ? Container(
-                          // padding: const EdgeInsets.all(2),
-                          decoration: const BoxDecoration(
-                            color: Color(0xff092B6B),
-                            borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Text(
-                            featuredModel.adText,
-                            style: TextStyle(
-                              color: featuredModel.isAdTextShown
-                                  ? Colors.white
-                                  : Colors.transparent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 10,
-                            ),
-                          ),
-                        )
-                      : const SizedBox()),
+                bottom: -1,
+                right: -1,
+                child: Container(
+                  // padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: featuredModel.isAdShown
+                        ? const Color(0xff092B6B)
+                        : Colors.transparent,
+                    borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    featuredModel.adText,
+                    style: TextStyle(
+                      color: featuredModel.isAdTextShown
+                          ? Colors.white
+                          : Colors.transparent,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
           const SizedBox(
