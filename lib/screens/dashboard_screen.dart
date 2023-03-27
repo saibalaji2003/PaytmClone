@@ -4,6 +4,7 @@ import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/models/payment_methods.dart';
 import 'package:paytmclone/screens/mobile_or_contact.dart';
+import 'package:paytmclone/screens/to_UPI_apps.dart';
 import 'package:paytmclone/widgets/benefits_container.dart';
 import 'package:paytmclone/widgets/bottom_blue_container.dart';
 import 'package:paytmclone/widgets/featured_widget.dart';
@@ -380,6 +381,7 @@ class DashboardScreen extends StatelessWidget {
                             icon: Icons.payment,
                             text1: 'To UPI ',
                             text2: 'Apps',
+                            navigatorScreen: ToUPIAppsScreen(),
                           ),
                           UpiMoneyTransferWidget(
                             icon: Icons.home_mini_outlined,
