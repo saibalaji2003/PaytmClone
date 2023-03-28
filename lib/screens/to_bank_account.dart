@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:paytmclone/common_widgets/payment_messages.dart';
 import 'package:paytmclone/models/payment_messages.dart';
+import 'package:paytmclone/screens/to_UPI_apps.dart';
 
-class ToUPIAppsScreen extends StatelessWidget {
-  const ToUPIAppsScreen({super.key});
+class ToBankAccountScreen extends StatelessWidget {
+  const ToBankAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -143,23 +144,34 @@ class ToUPIAppsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 25,
+                height: 40,
               ),
               const AnyUPIApp(
-                icon: Icons.numbers,
+                icon: Icons.home_work_outlined,
+                text1: 'Enter Bank A/c Details',
+                text2: 'Choose Bank or Enter IFSC Details',
+              ),
+              const AnyUPIApp(
+                icon: Icons.person_2_outlined,
+                text1: 'To Self A/c',
+                text2: 'Send Money to your own Bank A/c',
+              ),
+              const AnyUPIApp(
+                icon: Icons.currency_rupee,
                 text1: 'Enter Mobile/UPI Number',
                 text2: 'Send money to Gpay, Phonepe, BHIM or any UPI app',
               ),
               const AnyUPIApp(
-                icon: Icons.currency_rupee,
-                text1: 'Enter UPI ID',
+                icon: Icons.numbers,
+                text1: 'Enter UPI ID of Any UPI App',
                 text2: 'Pay to Bank A/C using UPI ID',
+                isDividerShown: false,
               ),
               const SizedBox(
-                height: 30,
+                height: 5,
               ),
               const Text(
-                'Recents',
+                'Recents & Saved Beneficiaries',
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -206,86 +218,6 @@ class ToUPIAppsScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class AnyUPIApp extends StatelessWidget {
-  final IconData icon;
-  final String text1;
-  final String text2;
-  final bool isDividerShown;
-  const AnyUPIApp({
-    super.key,
-    required this.icon,
-    required this.text1,
-    required this.text2,
-    this.isDividerShown = true,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(12),
-          decoration: const BoxDecoration(
-            color: Color(0xffE1F5FE),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            icon,
-            size: 23,
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text1,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Text(
-                text2,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              isDividerShown
-                  ? Container(
-                      color: Colors.grey,
-                      width: 500,
-                      height: 1,
-                    )
-                  : const SizedBox(),
-              const SizedBox(
-                height: 25,
-              ),
-            ],
-          ),
-        ),
-        const Icon(
-          Icons.arrow_forward_ios,
-          size: 23,
-        ),
-      ],
     );
   }
 }

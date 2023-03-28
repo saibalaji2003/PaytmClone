@@ -17,8 +17,9 @@ class PaymentMessagesWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ProfilePicWidget(
-              name: paymentMesssagesModel.name,
-              image: paymentMesssagesModel.image),
+            name: paymentMesssagesModel.name,
+            image: paymentMesssagesModel.image,
+          ),
           const SizedBox(
             width: 20,
           ),
