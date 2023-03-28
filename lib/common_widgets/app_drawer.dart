@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paytmclone/common_widgets/drawer_list_widget.dart';
 import 'package:paytmclone/models/drawer_listview.dart';
-import 'package:paytmclone/screens/sample.dart';
 
 class AppDrawerWidget extends StatelessWidget {
   const AppDrawerWidget({
@@ -15,7 +14,6 @@ class AppDrawerWidget extends StatelessWidget {
         icon: Icons.question_mark_outlined,
         text1: 'Help & Support',
         text2: 'Customer Supoort, Your Queries, Frequently Asked Questions',
-        navigatorScreen: const SampleScreen(),
       ),
       DrawerListModel(
         icon: Icons.currency_rupee,

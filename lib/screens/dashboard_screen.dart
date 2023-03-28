@@ -3,7 +3,9 @@ import 'package:lottie/lottie.dart';
 import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/models/payment_methods.dart';
-import 'package:paytmclone/screens/mobile_or_contact.dart';
+import 'package:paytmclone/screens/balance_and_history.dart';
+import 'package:paytmclone/screens/to_bank_account.dart';
+import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
 import 'package:paytmclone/widgets/benefits_container.dart';
 import 'package:paytmclone/widgets/bottom_blue_container.dart';
@@ -387,6 +389,7 @@ class DashboardScreen extends StatelessWidget {
                             icon: Icons.home_mini_outlined,
                             text1: 'To Bank or Self',
                             text2: 'A/C',
+                            navigatorScreen: ToBankAccountScreen(),
                           ),
                         ],
                       ),
@@ -430,6 +433,7 @@ class DashboardScreen extends StatelessWidget {
                                 text3: 'History',
                                 text1: 'Passbook',
                                 isText1Shown: true,
+                                navigatorScreen: BalanceAndHistoryScreen(),
                               ),
                               PaymentMethodsWidget(
                                 icon: Icons.credit_card,
@@ -1495,7 +1499,14 @@ class DashboardScreen extends StatelessWidget {
           'Scan Any QR',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        onPressed: () {},
+        onPressed: () {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => const OverLayTestingScreen(),
+          //   ),
+          // );
+        },
         backgroundColor: const Color(0xff022A72),
         icon: const Icon(
           Icons.qr_code_2,
