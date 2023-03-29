@@ -3,6 +3,7 @@ class PaymentHistoryModel {
   final ActionsEnum action;
   final String dateAndTime;
   final int money;
+
   PaymentHistoryModel({
     required this.name,
     required this.action,
