@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:paytmclone/models/payment_history_model.dart';
-import 'package:paytmclone/widgets/Bank_and_History/paytm_balance_widget.dart';
 import 'package:paytmclone/widgets/Bank_and_History/paytm_history_widget.dart';
+import 'package:paytmclone/widgets/bank_and_history/paytm_balance_widget.dart';
 
 class BalanceAndHistoryScreen extends StatelessWidget {
   const BalanceAndHistoryScreen({super.key});
@@ -13,7 +13,7 @@ class BalanceAndHistoryScreen extends StatelessWidget {
     List<PaymentHistoryModel> paymentHistoryModelList = [
       PaymentHistoryModel(
         name: 'Akhil Dada',
-        action: ActionsEnum.Failed,
+        action: ActionsEnum.Added,
         dateAndTime: '26 Mar, 11:26 AM',
         money: 10,
       ),

@@ -4,6 +4,7 @@ import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/models/payment_methods.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
+import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
@@ -444,6 +445,7 @@ class DashboardScreen extends StatelessWidget {
                                 icon: Icons.wallet,
                                 text2: 'Paytm',
                                 text3: 'Wallet',
+                                navigatorScreen: PaytmWalletScreen(),
                               ),
                               PaymentMethodsWidget(
                                 icon: Icons.timer_sharp,
