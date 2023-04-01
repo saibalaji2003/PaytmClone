@@ -4,6 +4,7 @@ import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/models/payment_methods.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
+import 'package:paytmclone/screens/cashback_and_offers.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
@@ -468,6 +469,7 @@ class DashboardScreen extends StatelessWidget {
                                 icon: Icons.cast_sharp,
                                 text2: 'Cashback &',
                                 text3: 'Offers',
+                                navigatorScreen: CashbackAndOffersScreen(),
                               ),
                               PaymentMethodsWidget(
                                 icon: Icons.video_call,

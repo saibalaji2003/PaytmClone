@@ -4,6 +4,7 @@ class UPILiteWidget extends StatelessWidget {
   final IconData icon;
   final String text1;
   final String text2;
+
   const UPILiteWidget({
     super.key,
     required this.icon,
@@ -24,6 +25,7 @@ class UPILiteWidget extends StatelessWidget {
           child: Icon(
             icon,
             size: 20,
+            color: Colors.black,
           ),
         ),
         const SizedBox(
@@ -52,7 +54,7 @@ class UPILiteWidget extends StatelessWidget {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
