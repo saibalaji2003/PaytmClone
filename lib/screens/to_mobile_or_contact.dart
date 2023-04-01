@@ -391,70 +391,11 @@ class MobileOrContactScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 10,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/paytm_logo.png',
-                          fit: BoxFit.cover,
-                          height: 40,
-                          width: 40,
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'Do 5 Money Transfers',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                'Get ₹25 Cashback',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Text(
-                          'Activate Offer',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 3,
-                        ),
-                        const Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blue,
-                          size: 15,
-                        )
-                      ],
-                    ),
+                  const CashbackOfferContainer(
+                    image: 'assets/images/paytm_logo.png',
+                    text1: 'Do 5 Money Transfers',
+                    text2: 'Get ₹25 Cashback',
+                    offerText: 'Activate Offer',
                   ),
                   const SizedBox(
                     height: 25,
@@ -488,6 +429,98 @@ class MobileOrContactScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class CashbackOfferContainer extends StatelessWidget {
+  final String image;
+  final String text1;
+  final String text2;
+  final String offerText;
+  final bool isofferTextShown;
+  final bool isIconShown;
+
+  const CashbackOfferContainer({
+    required this.image,
+    required this.text1,
+    required this.text2,
+    required this.offerText,
+    this.isofferTextShown = true,
+    this.isIconShown = true,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+        vertical: 10,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: Colors.black,
+        ),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            image,
+            fit: BoxFit.cover,
+            height: 40,
+            width: 40,
+          ),
+          const SizedBox(
+            width: 15,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  text1,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    // fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+                Text(
+                  text2,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          isofferTextShown
+              ? Text(
+                  offerText,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                )
+              : const SizedBox(),
+          const SizedBox(
+            width: 3,
+          ),
+          isIconShown
+              ? const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.blue,
+                  size: 15,
+                )
+              : const SizedBox(),
+        ],
       ),
     );
   }

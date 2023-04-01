@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class PaymentMethodsWidget extends StatelessWidget {
   final String text1;
   final IconData icon;
+
   final String text2;
   final String text3;
   final bool isText1Shown;

@@ -235,6 +235,10 @@ class PaytmWalletScreen extends StatelessWidget {
                           height: 30,
                         ),
                         TextField(
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(
                               Icons.currency_rupee,
