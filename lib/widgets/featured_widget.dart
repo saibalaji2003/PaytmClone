@@ -27,10 +27,10 @@ class FeaturedWidget extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 0,
-                    right: 17,
+                    top: -2,
+                    right: 10,
                     child: Container(
-                      // padding: const EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(3),
                       decoration: BoxDecoration(
                         color: featuredModel.saleContainerShown
                             ? const Color(0xffFFD766)
@@ -55,7 +55,7 @@ class FeaturedWidget extends StatelessWidget {
                 bottom: -1,
                 right: -1,
                 child: Container(
-                  // padding: const EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
                     color: featuredModel.isAdShown
                         ? const Color(0xff092B6B)
