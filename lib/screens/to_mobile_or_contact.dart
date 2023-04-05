@@ -456,14 +456,14 @@ class CashbackOfferContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: 15,
+        horizontal: 10,
         vertical: 10,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: Colors.black,
+          color: Colors.grey.shade300,
         ),
       ),
       child: Row(
@@ -486,7 +486,7 @@ class CashbackOfferContainer extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.black,
                     // fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 14,
                   ),
                 ),
                 Text(
@@ -511,7 +511,7 @@ class CashbackOfferContainer extends StatelessWidget {
                 )
               : const SizedBox(),
           const SizedBox(
-            width: 3,
+            width: 1,
           ),
           isIconShown
               ? const Icon(

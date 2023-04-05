@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/models/payment_methods.dart';
+import 'package:paytmclone/screens/all_services.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
@@ -77,6 +78,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Earn',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -85,6 +90,10 @@ class DashboardScreen extends StatelessWidget {
         text2: '',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -93,6 +102,10 @@ class DashboardScreen extends StatelessWidget {
         text2: '',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -101,6 +114,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Earn',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -109,6 +126,10 @@ class DashboardScreen extends StatelessWidget {
         text2: '₹1',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -117,6 +138,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Now',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -125,6 +150,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Autopay',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -133,6 +162,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Health',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
     ];
 
@@ -156,6 +189,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'OFF',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -188,6 +225,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'OFF',
         adText: '',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -208,6 +249,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Broadband',
         adText: 'adText',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
       FeaturedModel(
         image:
@@ -216,6 +261,10 @@ class DashboardScreen extends StatelessWidget {
         text2: 'Broadband',
         adText: 'adText',
         saleText: '',
+        isAdShown: false,
+        isAdTextShown: false,
+        saleContainerShown: false,
+        saleTextShown: false,
       ),
     ];
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -480,6 +529,7 @@ class DashboardScreen extends StatelessWidget {
                                 icon: Icons.bluetooth_audio_outlined,
                                 text2: 'All Services',
                                 text3: '',
+                                navigatorScreen: AllServicesScreen(),
                               ),
                             ],
                           ),
@@ -613,9 +663,9 @@ class DashboardScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return PaymentMethodsWidget(
                             icon: paymentMethodsList[index].icon,
+                            text1: paymentMethodsList[index].text1,
                             text2: paymentMethodsList[index].text2,
                             text3: paymentMethodsList[index].text3,
-                            text1: paymentMethodsList[index].text1,
                             isText1Shown:
                                 paymentMethodsList[index].isText1Shown,
                           );
