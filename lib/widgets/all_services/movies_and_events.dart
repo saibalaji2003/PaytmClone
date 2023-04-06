@@ -2,53 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:paytmclone/models/cashback_points.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
 
-class Screen3 extends StatelessWidget {
-  const Screen3({super.key});
+class Screen6 extends StatelessWidget {
+  const Screen6({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<CashbackPointsModel> loansAndCreditCardsList = [
+    List<CashbackPointsModel> moviesAndEventsList = [
       CashbackPointsModel(
-        icon: Icons.currency_rupee,
-        text1: 'Paytm',
-        text2: 'Postpaid',
+        icon: Icons.move_to_inbox_outlined,
+        text1: 'Movie Tickets',
+        text2: '',
         containerText: '',
         isContainerShown: false,
       ),
       CashbackPointsModel(
-        icon: Icons.credit_card,
-        text1: 'Credit Cards',
+        icon: Icons.event_note_rounded,
+        text1: 'Event Tickets',
         text2: '',
-        containerText: '0 Joining',
+        containerText: '',
+        isContainerShown: false,
+      ),
+      CashbackPointsModel(
+        icon: Icons.airplane_ticket_outlined,
+        text1: 'Book Tickets',
+        text2: '',
+        containerText: '',
+        isContainerShown: false,
+      ),
+      CashbackPointsModel(
+        icon: Icons.movie_filter_outlined,
+        text1: 'Upcoming',
+        text2: 'Movies',
+        containerText: 'Set Alerts',
         isContainerShown: true,
-      ),
-      CashbackPointsModel(
-        icon: Icons.lan_outlined,
-        text1: 'Personal Loan',
-        text2: '',
-        containerText: '',
-        isContainerShown: false,
-      ),
-      CashbackPointsModel(
-        icon: Icons.credit_score,
-        text1: 'Free Credit',
-        text2: 'Score',
-        containerText: '',
-        isContainerShown: false,
-      ),
-      CashbackPointsModel(
-        icon: Icons.credit_card,
-        text1: 'Pay Credit',
-        text2: 'Card Bill',
-        containerText: '',
-        isContainerShown: false,
-      ),
-      CashbackPointsModel(
-        icon: Icons.local_atm_rounded,
-        text1: 'Pay Loan',
-        text2: '',
-        containerText: '',
-        isContainerShown: false,
       ),
     ];
     return Column(
@@ -61,10 +47,11 @@ class Screen3 extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
             ),
-            itemCount: loansAndCreditCardsList.length,
+            itemCount: moviesAndEventsList.length,
             itemBuilder: (BuildContext context, int index) {
               return CashbackPointsWidget(
-                  cashbackPointsModel: loansAndCreditCardsList[index]);
+                cashbackPointsModel: moviesAndEventsList[index],
+              );
             },
           ),
         ),

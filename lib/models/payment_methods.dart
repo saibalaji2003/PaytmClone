@@ -6,11 +6,14 @@ class PaymentMethodsModel {
   final String text2;
   final String text3;
   final bool isText1Shown;
+  final Widget? navigatorScreen;
+
   PaymentMethodsModel({
     this.text1 = 'Header',
     required this.icon,
     required this.text2,
     required this.text3,
     this.isText1Shown = false,
+    this.navigatorScreen,
   });
 }
