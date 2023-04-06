@@ -2,50 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:paytmclone/models/cashback_points.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
 
-class Screen3 extends StatelessWidget {
-  const Screen3({super.key});
+class Screen4 extends StatelessWidget {
+  const Screen4({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<CashbackPointsModel> loansAndCreditCardsList = [
+    List<CashbackPointsModel> travelScreenList = [
       CashbackPointsModel(
-        icon: Icons.currency_rupee,
-        text1: 'Paytm',
-        text2: 'Postpaid',
-        containerText: '',
-        isContainerShown: false,
-      ),
-      CashbackPointsModel(
-        icon: Icons.credit_card,
-        text1: 'Credit Cards',
-        text2: '',
-        containerText: '0 Joining',
-        isContainerShown: true,
-      ),
-      CashbackPointsModel(
-        icon: Icons.lan_outlined,
-        text1: 'Personal Loan',
+        icon: Icons.flight,
+        text1: 'Flight Tickets',
         text2: '',
         containerText: '',
         isContainerShown: false,
       ),
       CashbackPointsModel(
-        icon: Icons.credit_score,
-        text1: 'Free Credit',
-        text2: 'Score',
+        icon: Icons.directions_bus_outlined,
+        text1: 'Bus Tickets',
+        text2: '',
         containerText: '',
         isContainerShown: false,
       ),
       CashbackPointsModel(
-        icon: Icons.credit_card,
-        text1: 'Pay Credit',
-        text2: 'Card Bill',
+        icon: Icons.train_outlined,
+        text1: 'Train Tickets',
+        text2: '',
         containerText: '',
         isContainerShown: false,
       ),
       CashbackPointsModel(
-        icon: Icons.local_atm_rounded,
-        text1: 'Pay Loan',
+        icon: Icons.home_work_outlined,
+        text1: 'Hotels',
+        text2: '',
+        containerText: '',
+        isContainerShown: false,
+      ),
+      CashbackPointsModel(
+        icon: Icons.car_repair_outlined,
+        text1: 'Outstation',
+        text2: 'Cabs',
+        containerText: '',
+        isContainerShown: false,
+      ),
+      CashbackPointsModel(
+        icon: Icons.car_rental_outlined,
+        text1: 'Ola Cabs',
         text2: '',
         containerText: '',
         isContainerShown: false,
@@ -61,10 +61,10 @@ class Screen3 extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
             ),
-            itemCount: loansAndCreditCardsList.length,
+            itemCount: travelScreenList.length,
             itemBuilder: (BuildContext context, int index) {
               return CashbackPointsWidget(
-                  cashbackPointsModel: loansAndCreditCardsList[index]);
+                  cashbackPointsModel: travelScreenList[index]);
             },
           ),
         ),

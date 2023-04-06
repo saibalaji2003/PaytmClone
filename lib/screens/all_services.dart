@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:paytmclone/models/all_services_screen_list.dart';
 import 'package:paytmclone/widgets/all_services/featured_screen.dart';
+import 'package:paytmclone/widgets/all_services/insurance_screen.dart';
 import 'package:paytmclone/widgets/all_services/loan_&_credit_card.dart';
+import 'package:paytmclone/widgets/all_services/mini_apps_store.dart';
+import 'package:paytmclone/widgets/all_services/movies_and_events.dart';
 import 'package:paytmclone/widgets/all_services/recharge_and_pay_bills.dart';
+import 'package:paytmclone/widgets/all_services/stocks_&_ipo.dart';
+import 'package:paytmclone/widgets/all_services/travel_screen.dart';
+import 'package:paytmclone/widgets/all_services/wallet_screen.dart';
 
 class AllServicesScreen extends StatefulWidget {
   const AllServicesScreen({super.key});
@@ -127,7 +133,19 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                   ? const Screen1()
                   : featuredNumber == 1
                       ? const Screen2()
-                      : const Screen3(),
+                      : featuredNumber == 2
+                          ? const Screen3()
+                          : featuredNumber == 3
+                              ? const Screen4()
+                              : featuredNumber == 4
+                                  ? const Screen5()
+                                  : featuredNumber == 5
+                                      ? const Screen6()
+                                      : featuredNumber == 6
+                                          ? const Screen7()
+                                          : featuredNumber == 7
+                                              ? const Screen8()
+                                              : const Screen9(),
             )
           ],
         ),

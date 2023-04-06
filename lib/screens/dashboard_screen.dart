@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:paytmclone/common_widgets/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
-import 'package:paytmclone/models/payment_methods.dart';
 import 'package:paytmclone/screens/all_services.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
+import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
@@ -26,45 +26,46 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<PaymentMethodsModel> paymentMethodsList = [
-      PaymentMethodsModel(
-        icon: Icons.mobile_friendly,
+    List<PaymentMethodsWidget> paymentMethodsList = [
+      const PaymentMethodsWidget(
+        icon: Icons.smartphone,
         text2: 'Mobile',
         text3: 'Recharge',
+        navigatorScreen: MobileRechargeScreen(),
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.credit_card,
         text2: 'Rent via',
         text3: 'Credit Card',
         text1: 'Lowest Fee',
         isText1Shown: true,
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.data_thresholding,
         text2: 'DTH',
         text3: 'Recharge',
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.lightbulb,
         text2: 'Electricity',
         text3: 'Bill',
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.credit_card,
         text2: 'Credit Card',
         text3: 'Payment',
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.apartment_outlined,
         text2: 'Apartment',
         text3: '',
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.cast_for_education,
         text2: 'Education',
         text3: 'Fees',
       ),
-      PaymentMethodsModel(
+      const PaymentMethodsWidget(
         icon: Icons.mobile_friendly,
         text2: 'Mobile',
         text3: 'Recharge',
@@ -473,6 +474,7 @@ class DashboardScreen extends StatelessWidget {
                       height: 90,
                       width: double.infinity,
                       child: PageView(
+                        physics: const BouncingScrollPhysics(),
                         controller: pageController,
                         children: [
                           Row(
@@ -668,6 +670,8 @@ class DashboardScreen extends StatelessWidget {
                             text3: paymentMethodsList[index].text3,
                             isText1Shown:
                                 paymentMethodsList[index].isText1Shown,
+                            navigatorScreen:
+                                paymentMethodsList[index].navigatorScreen,
                           );
                         },
                       ),

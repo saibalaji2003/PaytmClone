@@ -10,7 +10,7 @@ class ContactsProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
           ProfilePicWith2Letters(name: contactsProfilePicModel.name),
@@ -69,6 +69,15 @@ class ProfilePicWith2Letters extends StatelessWidget {
       Colors.purple,
       Colors.brown,
       Colors.blue,
+      Colors.orangeAccent,
+      Colors.yellowAccent,
+      Colors.redAccent,
+      Colors.pinkAccent,
+      Colors.indigoAccent,
+      Colors.teal,
+      Colors.cyan,
+      Colors.lime,
+      Colors.lightGreen,
     ];
     String firstLetter = '';
     String secondLetter = '';
