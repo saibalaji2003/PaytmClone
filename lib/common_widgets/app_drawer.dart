@@ -48,10 +48,11 @@ class AppDrawerWidget extends StatelessWidget {
         text2: 'Customer Supoort, Your Queries, Frequently Asked Questions',
       ),
       DrawerListModel(
-          icon: Icons.currency_exchange_outlined,
-          text1: 'Instant Personal Loan',
-          text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
-          isDividerShown: false),
+        icon: Icons.currency_exchange_outlined,
+        text1: 'Instant Personal Loan',
+        text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
+        isDividerShown: false,
+      ),
     ];
 
     return SafeArea(

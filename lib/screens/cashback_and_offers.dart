@@ -237,7 +237,6 @@ class CashbackAndOffersScreen extends StatelessWidget {
                     text: 'Cashback Won',
                     containerText: '',
                     isContainerShown: false,
-                    isContainerTextShown: false,
                   ),
                   CashbackContainerWidget(
                     number: '12',
@@ -249,7 +248,6 @@ class CashbackAndOffersScreen extends StatelessWidget {
                     text: 'My Vouchers',
                     containerText: '',
                     isContainerShown: false,
-                    isContainerTextShown: false,
                   ),
                 ],
               ),
@@ -1297,7 +1295,6 @@ class CashbackContainerWidget extends StatelessWidget {
   final String text;
   final String containerText;
   final bool isContainerShown;
-  final bool isContainerTextShown;
 
   const CashbackContainerWidget({
     required this.number,
@@ -1305,7 +1302,6 @@ class CashbackContainerWidget extends StatelessWidget {
     required this.containerText,
     this.isContainerShown = true,
     super.key,
-    this.isContainerTextShown = true,
   });
 
   @override
@@ -1360,7 +1356,7 @@ class CashbackContainerWidget extends StatelessWidget {
             child: Text(
               containerText,
               style: TextStyle(
-                color: isContainerTextShown ? Colors.black : Colors.transparent,
+                color: isContainerShown ? Colors.black : Colors.transparent,
                 fontWeight: FontWeight.bold,
                 fontSize: 11,
               ),

@@ -5,12 +5,14 @@ import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/screens/all_services.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
+import 'package:paytmclone/screens/education_fees.dart';
 import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/rent_via_credit_card.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
+import 'package:paytmclone/screens/view_more_screen.dart';
 import 'package:paytmclone/widgets/benefits_container.dart';
 import 'package:paytmclone/widgets/bottom_blue_container.dart';
 import 'package:paytmclone/widgets/featured_widget.dart';
@@ -66,6 +68,7 @@ class DashboardScreen extends StatelessWidget {
         icon: Icons.cast_for_education,
         text2: 'Education',
         text3: 'Fees',
+        navigatorScreen: EducationFees(),
       ),
       const PaymentMethodsWidget(
         icon: Icons.mobile_friendly,
@@ -666,35 +669,46 @@ class DashboardScreen extends StatelessWidget {
                         itemCount: paymentMethodsList.length,
                         itemBuilder: (BuildContext context, int index) {
                           return index == 7
-                              ? Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.all(5),
-                                        // height: 50,
-                                        // width: 50,
-                                        decoration: BoxDecoration(
-                                          color: Colors.blue.withOpacity(0.3),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.indigo,
-                                        ),
+                              ? GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ViewMoreScreen(),
                                       ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      const Text(
-                                        'View More',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(5),
+                                          // height: 50,
+                                          // width: 50,
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue.withOpacity(0.3),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: const Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.indigo,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        const Text(
+                                          'View More',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 )
                               : PaymentMethodsWidget(
