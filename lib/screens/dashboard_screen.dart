@@ -7,6 +7,7 @@ import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
 import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
+import 'package:paytmclone/screens/rent_via_credit_card.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
@@ -39,6 +40,7 @@ class DashboardScreen extends StatelessWidget {
         text3: 'Credit Card',
         text1: 'Lowest Fee',
         isText1Shown: true,
+        navigatorScreen: RentViaCreditCardScreen(),
       ),
       const PaymentMethodsWidget(
         icon: Icons.data_thresholding,
@@ -663,16 +665,48 @@ class DashboardScreen extends StatelessWidget {
                         ),
                         itemCount: paymentMethodsList.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return PaymentMethodsWidget(
-                            icon: paymentMethodsList[index].icon,
-                            text1: paymentMethodsList[index].text1,
-                            text2: paymentMethodsList[index].text2,
-                            text3: paymentMethodsList[index].text3,
-                            isText1Shown:
-                                paymentMethodsList[index].isText1Shown,
-                            navigatorScreen:
-                                paymentMethodsList[index].navigatorScreen,
-                          );
+                          return index == 7
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(5),
+                                        // height: 50,
+                                        // width: 50,
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue.withOpacity(0.3),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.indigo,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      const Text(
+                                        'View More',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : PaymentMethodsWidget(
+                                  icon: paymentMethodsList[index].icon,
+                                  text1: paymentMethodsList[index].text1,
+                                  text2: paymentMethodsList[index].text2,
+                                  text3: paymentMethodsList[index].text3,
+                                  isText1Shown:
+                                      paymentMethodsList[index].isText1Shown,
+                                  navigatorScreen:
+                                      paymentMethodsList[index].navigatorScreen,
+                                );
                         },
                       ),
                     ),
@@ -1553,6 +1587,7 @@ class DashboardScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
+        extendedPadding: const EdgeInsets.all(15),
         label: const Text(
           'Scan Any QR',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
@@ -1567,7 +1602,7 @@ class DashboardScreen extends StatelessWidget {
         },
         backgroundColor: const Color(0xff022A72),
         icon: const Icon(
-          Icons.qr_code_2,
+          Icons.qr_code_scanner,
           color: Colors.white,
           size: 25,
         ),
