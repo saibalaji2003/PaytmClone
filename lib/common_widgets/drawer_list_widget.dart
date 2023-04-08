@@ -71,9 +71,10 @@ class DrawerListWidget extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(
+          Icon(
             Icons.arrow_forward_ios,
-            color: Colors.black,
+            color:
+                drawerListModel.isIconShown ? Colors.black : Colors.transparent,
             size: 15,
           )
         ],
