@@ -6,6 +6,7 @@ import 'package:paytmclone/screens/all_services.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
 import 'package:paytmclone/screens/education_fees.dart';
+import 'package:paytmclone/screens/free_credit_scrore.dart';
 import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/rent_via_credit_card.dart';
@@ -729,6 +730,7 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     const BottomBlueContainerWIdget(
                       text: 'Win 100% Cashback on Mobile Recharges',
+                      navigator: MobileRechargeScreen(),
                     ),
                   ],
                 ),
@@ -821,6 +823,7 @@ class DashboardScreen extends StatelessWidget {
                                         text2: 'Free Credit',
                                         text3: 'Score',
                                         isGapShouldShow: false,
+                                        navigatorScreen: FreeCreditScore(),
                                       ),
                                     ),
                                     Container(

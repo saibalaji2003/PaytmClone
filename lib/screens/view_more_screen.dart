@@ -398,6 +398,9 @@ class ViewMoreScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 15,
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(

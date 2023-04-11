@@ -135,6 +135,7 @@ class MobileOrContactScreen extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             primary: true,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
