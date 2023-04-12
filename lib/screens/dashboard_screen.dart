@@ -1339,6 +1339,7 @@ class DashboardScreen extends StatelessWidget {
                             icon: Icons.money,
                             text2: 'Cashback &',
                             text3: 'Offers',
+                            navigatorScreen: CashbackAndOffersScreen(),
                           ),
                           PaymentMethodsWidget(
                             icon: Icons.production_quantity_limits,
