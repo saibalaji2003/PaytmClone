@@ -489,19 +489,17 @@ class FreeCreditScore extends StatelessWidget {
                       const SizedBox(
                         height: 25,
                       ),
-                      SizedBox(
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          primary: false,
-                          scrollDirection: Axis.vertical,
-                          itemCount: learnMoreModelList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FAQsListWidget(
-                              faqsListModel: learnMoreModelList[index],
-                            );
-                          },
-                        ),
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        primary: false,
+                        scrollDirection: Axis.vertical,
+                        itemCount: learnMoreModelList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return FAQsListWidget(
+                            faqsListModel: learnMoreModelList[index],
+                          );
+                        },
                       ),
                       const SizedBox(
                         height: 25,

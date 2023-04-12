@@ -4,6 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:paytmclone/models/active_offers_model.dart';
 import 'package:paytmclone/models/cashback_points.dart';
 import 'package:paytmclone/models/products_at_rupees_1.dart';
+import 'package:paytmclone/screens/cashback_and_offers/cashback_won.dart';
+import 'package:paytmclone/screens/cashback_and_offers/my_vouchers.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/widgets/loans_container.dart';
 import 'package:paytmclone/widgets/payment_methods.dart';
@@ -237,6 +239,7 @@ class CashbackAndOffersScreen extends StatelessWidget {
                     text: 'Cashback Won',
                     containerText: '',
                     isContainerShown: false,
+                    navigatorScreen: CashbackWonScreen(),
                   ),
                   CashbackContainerWidget(
                     number: '12',
@@ -248,6 +251,7 @@ class CashbackAndOffersScreen extends StatelessWidget {
                     text: 'My Vouchers',
                     containerText: '',
                     isContainerShown: false,
+                    navigatorScreen: MyVouchersScreen(),
                   ),
                 ],
               ),
@@ -1295,75 +1299,91 @@ class CashbackContainerWidget extends StatelessWidget {
   final String text;
   final String containerText;
   final bool isContainerShown;
+  final Widget? navigatorScreen;
 
   const CashbackContainerWidget({
     required this.number,
     required this.text,
     required this.containerText,
     this.isContainerShown = true,
+    this.navigatorScreen,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14,
-            vertical: 10,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.grey.shade300),
-          ),
-          child: Column(
-            children: [
-              Text(
-                number,
-                style: const TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 13,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          top: -5,
-          right: 28,
-          child: Container(
-            padding: const EdgeInsets.all(3),
+    return GestureDetector(
+      onTap: () {
+        if (navigatorScreen == null) {
+          Fluttertoast.showToast(msg: 'Nothing Here');
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => navigatorScreen!,
+            ),
+          );
+        }
+      },
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 10,
+            ),
             decoration: BoxDecoration(
-              color: isContainerShown
-                  ? const Color(0xffFFD766)
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(5),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.grey.shade300),
             ),
-            child: Text(
-              containerText,
-              style: TextStyle(
-                color: isContainerShown ? Colors.black : Colors.transparent,
-                fontWeight: FontWeight.bold,
-                fontSize: 11,
-              ),
+            child: Column(
+              children: [
+                Text(
+                  number,
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
             ),
           ),
-        )
-      ],
+          Positioned(
+            top: -5,
+            right: 28,
+            child: Container(
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: isContainerShown
+                    ? const Color(0xffFFD766)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Text(
+                containerText,
+                style: TextStyle(
+                  color: isContainerShown ? Colors.black : Colors.transparent,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 11,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
