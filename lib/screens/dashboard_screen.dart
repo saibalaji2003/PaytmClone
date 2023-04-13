@@ -9,6 +9,7 @@ import 'package:paytmclone/screens/education_fees.dart';
 import 'package:paytmclone/screens/free_credit_scrore.dart';
 import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
+import 'package:paytmclone/screens/refer_and_win.dart';
 import 'package:paytmclone/screens/rent_via_credit_card.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
@@ -1300,6 +1301,7 @@ class DashboardScreen extends StatelessWidget {
                       rightCornerText: 'Refer Now to Paytm',
                       containerText: '',
                       text2ColorShown: false,
+                      navigatorScreen: ReferAndWinScreen(),
                     ),
                   ),
                 ],
