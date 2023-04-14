@@ -35,9 +35,9 @@ class FreeCreditScore extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           primary: true,
-          physics: const BouncingScrollPhysics(
-            decelerationRate: ScrollDecelerationRate.normal,
-          ),
+          // physics: const BouncingScrollPhysics(
+          //   decelerationRate: ScrollDecelerationRate.normal,
+          // ),
           child: Column(
             children: [
               Padding(

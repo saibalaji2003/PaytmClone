@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:paytmclone/models/payment_history_model.dart';
+import 'package:paytmclone/screens/balance_and_history/upi_settings.dart';
 import 'package:paytmclone/widgets/Bank_and_History/paytm_history_widget.dart';
 import 'package:paytmclone/widgets/bank_and_history/paytm_balance_widget.dart';
 
@@ -79,17 +80,28 @@ class BalanceAndHistoryScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: const [
-                Text(
-                  'UPI Settings',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UPISettings(),
                   ),
-                ),
-              ],
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'UPI Settings',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -322,7 +322,6 @@ class ViewMoreScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         primary: true,
-        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(

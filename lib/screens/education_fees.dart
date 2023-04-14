@@ -85,7 +85,7 @@ class EducationFees extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+          // physics: const BouncingScrollPhysics(),
           primary: true,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
