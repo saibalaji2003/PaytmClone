@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paytmclone/screens/balance_and_history/upi_settings.dart';
 import 'package:paytmclone/screens/dashboard_screen.dart';
 
 void main() {
@@ -12,6 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: MyBehavior(),
+          child: child!,
+        );
+      },
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.

@@ -128,7 +128,6 @@ class ToUPIAppsScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         primary: true,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),

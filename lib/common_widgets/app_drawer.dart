@@ -58,7 +58,6 @@ class AppDrawerWidget extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         primary: true,
-        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(

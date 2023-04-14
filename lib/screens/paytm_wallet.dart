@@ -61,7 +61,7 @@ class PaytmWalletScreen extends StatelessWidget {
             ],
           ),
           SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            // physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 Padding(

@@ -213,7 +213,7 @@ class CashbackAndOffersScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         primary: true,
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

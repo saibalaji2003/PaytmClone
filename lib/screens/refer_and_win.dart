@@ -100,7 +100,7 @@ class ReferAndWinScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         primary: true,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
