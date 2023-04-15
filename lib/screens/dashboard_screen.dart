@@ -11,6 +11,7 @@ import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/refer_and_win.dart';
 import 'package:paytmclone/screens/rent_via_credit_card.dart';
+import 'package:paytmclone/screens/ticket_booking.dart/flight_tickets.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
@@ -1150,6 +1151,7 @@ class DashboardScreen extends StatelessWidget {
                                         text2: 'Flight',
                                         text3: 'Tickets',
                                         isGapShouldShow: false,
+                                        navigatorScreen: FlightTickets(),
                                       ),
                                     ),
                                     Container(
@@ -1473,8 +1475,9 @@ class DashboardScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset('assets/images/paytm_image.jpg')),
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset('assets/images/paytm_image.jpg'),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -1527,80 +1530,90 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Color(0xffE1F5FE),
-              ),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Invite your',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      const Text(
-                        'friends to Paytm',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      const Text(
-                        'Get ₹151 Cashback',
-                        style: TextStyle(
-                          color: Colors.black,
-                          // fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 14, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(color: Colors.blue),
-                        ),
-                        child: const Text(
-                          'Refer Now',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ReferAndWinScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  color: Color(0xffE1F5FE),
+                ),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Invite your',
                           style: TextStyle(
-                            color: Colors.blue,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 17,
+                            fontSize: 19,
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const Text(
-                        'T&C Apply',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
+                        const SizedBox(
+                          height: 2,
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        const Text(
+                          'friends to Paytm',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        const Text(
+                          'Get ₹151 Cashback',
+                          style: TextStyle(
+                            color: Colors.black,
+                            // fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: Colors.blue),
+                          ),
+                          child: const Text(
+                            'Refer Now',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        const Text(
+                          'T&C Apply',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
