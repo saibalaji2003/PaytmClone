@@ -97,7 +97,7 @@ class ProfilePicWith2Letters extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: colorsList[random.nextInt(10)],
+        color: colorsList[random.nextInt(18)],
         shape: BoxShape.circle,
       ),
       height: 50,
