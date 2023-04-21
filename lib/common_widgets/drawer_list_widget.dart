@@ -25,12 +25,12 @@ class DrawerListWidget extends StatelessWidget {
         }
       },
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
             drawerListModel.icon,
             color: Colors.black,
-            size: 20,
+            size: 25,
           ),
           const SizedBox(
             width: 10,
@@ -44,7 +44,7 @@ class DrawerListWidget extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: 15,
                   ),
                 ),
                 const SizedBox(
@@ -55,7 +55,7 @@ class DrawerListWidget extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.grey,
                     // fontWeight: FontWeight.bold,
-                    fontSize: 13,
+                    fontSize: 14,
                   ),
                 ),
                 Padding(
@@ -76,7 +76,7 @@ class DrawerListWidget extends StatelessWidget {
             color:
                 drawerListModel.isIconShown ? Colors.black : Colors.transparent,
             size: 15,
-          )
+          ),
         ],
       ),
     );

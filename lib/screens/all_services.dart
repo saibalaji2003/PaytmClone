@@ -86,21 +86,25 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
           ),
         ),
         titleSpacing: 0,
-        title: TextField(
-          decoration: InputDecoration(
-            prefixIcon: const Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-            fillColor: const Color(0xffF4F8FB),
-            filled: true,
-            hintText: 'Search Paytm',
-            hintStyle: const TextStyle(
-              color: Colors.grey,
-              fontWeight: FontWeight.bold,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+        title: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: TextField(
+            decoration: InputDecoration(
+              prefixIcon: const Icon(
+                Icons.search,
+                color: Colors.grey,
+              ),
+              fillColor: const Color(0xffF4F8FB),
+              filled: true,
+              hintText: 'Search Paytm',
+              hintStyle: const TextStyle(
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              contentPadding: const EdgeInsets.all(0),
             ),
           ),
         ),
@@ -121,9 +125,10 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                       changeFeaturedNumberValue(index);
                     },
                     child: ListContainerWidget(
-                        // index: index,
-                        // onTap: changeFeaturedNumberValue,
-                        listContainerModel: containerModelList[index]),
+                      // index: index,
+                      // onTap: changeFeaturedNumberValue,
+                      listContainerModel: containerModelList[index],
+                    ),
                   );
                 },
               ),
@@ -146,7 +151,7 @@ class _AllServicesScreenState extends State<AllServicesScreen> {
                                           : featuredNumber == 7
                                               ? const Screen8()
                                               : const Screen9(),
-            )
+            ),
           ],
         ),
       ),
