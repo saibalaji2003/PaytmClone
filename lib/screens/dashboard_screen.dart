@@ -12,7 +12,7 @@ import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
 import 'package:paytmclone/screens/refer_and_win.dart';
 import 'package:paytmclone/screens/rent_via_credit_card.dart';
-import 'package:paytmclone/screens/ticket_booking.dart/flight_tickets.dart';
+import 'package:paytmclone/screens/ticket_booking.dart/travel_screen.dart';
 import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
@@ -1176,7 +1176,7 @@ class DashboardScreen extends StatelessWidget {
                                             text2: 'Flight',
                                             text3: 'Tickets',
                                             isGapShouldShow: false,
-                                            navigatorScreen: FlightTickets(),
+                                            navigatorScreen: TravelScreen(),
                                           ),
                                         ),
                                         Container(

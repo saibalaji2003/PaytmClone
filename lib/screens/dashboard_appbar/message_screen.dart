@@ -106,17 +106,18 @@ class MessageScreen extends StatelessWidget {
         personName: 'Chris Hemsworth',
         name: '',
         message: '',
-        date: '20/07/2022',
-        day: '',
+        date: '',
+        day: 'Yesterday',
         noOfMessages: '2',
         messageEnum: MessageEnum.TransferSuccessful,
         isNameShown: false,
+        dayOrDate: false,
       ),
       AllMessagesModel(
           image: '',
           personName: 'Dwayne Johnson',
           name: '',
-          message: 'hello hfhfhj  ljgu ',
+          message: 'Hello I am Dwayne Johnason',
           date: '20/07/2022',
           day: 'Monday',
           noOfMessages: '9+',
@@ -321,20 +322,75 @@ class AllMessagesWidget extends StatelessWidget {
                       const SizedBox(
                         height: 3,
                       ),
-                      Text(
-                        allMessagesModel.messageEnum ==
-                                MessageEnum.TransferFailed
-                            ? "Your Payment of ₹10 failed"
-                            : allMessagesModel.messageEnum ==
-                                    MessageEnum.TransferSuccessful
-                                ? "₹20 sent"
-                                : allMessagesModel.message,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      ),
+                      allMessagesModel.messageEnum == MessageEnum.TransferFailed
+                          ? Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(3),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.warning,
+                                        color: Colors.white,
+                                        size: 10,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Text(
+                                      'Your Payment of ₹10 failed',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          : allMessagesModel.messageEnum ==
+                                  MessageEnum.TransferSuccessful
+                              ? Row(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        color: Colors.greenAccent.shade400,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.currency_rupee,
+                                        color: Colors.white,
+                                        size: 10,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Text(
+                                      '₹30 Sent',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Text(
+                                  allMessagesModel.message,
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
                     ],
                   ),
                 ),
