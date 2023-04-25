@@ -551,8 +551,11 @@ class PassbookWidget extends StatelessWidget {
 
 class MoneyAddingContainer extends StatelessWidget {
   final int amount;
+  final bool amountColor;
+
   const MoneyAddingContainer({
     required this.amount,
+    this.amountColor = true,
     super.key,
   });
 
@@ -566,9 +569,9 @@ class MoneyAddingContainer extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade400),
       ),
       child: Text(
-        '+₹$amount',
+        '+ ₹$amount',
         style: TextStyle(
-          color: Colors.grey.shade700,
+          color: amountColor ? Colors.grey.shade700 : Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 15,
         ),

@@ -495,7 +495,7 @@ class CashbackOfferContainer extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 17,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -507,7 +507,7 @@ class CashbackOfferContainer extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 13,
                   ),
                 )
               : const SizedBox(),

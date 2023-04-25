@@ -144,7 +144,11 @@ class _TravelScreenState extends State<TravelScreen> {
                       ? const FlightTickets()
                       : typeOfTicket == 1
                           ? const BusTickets()
-                          : const TrainTickets(),
+                          : typeOfTicket == 2
+                              ? const TrainTickets()
+                              : typeOfTicket == 4
+                                  ? const FlightTickets()
+                                  : const BusTickets(),
                 ],
               ),
             ),
