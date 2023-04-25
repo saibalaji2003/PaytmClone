@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:paytmclone/common_widgets/app_drawer.dart';
+import 'package:paytmclone/screens/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/screens/all_services.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
 import 'package:paytmclone/screens/dashboard_appbar/message_screen.dart';
+import 'package:paytmclone/screens/dashboard_appbar/search_screen.dart';
 import 'package:paytmclone/screens/education_fees.dart';
 import 'package:paytmclone/screens/free_credit_scrore.dart';
 import 'package:paytmclone/screens/mobile_recharge.dart';
@@ -340,10 +341,20 @@ class DashboardScreen extends StatelessWidget {
             ),
             centerTitle: true,
             actions: [
-              const Icon(
-                Icons.search,
-                color: Color(0xff022868),
-                size: 27,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
+                    ),
+                  );
+                },
+                child: const Icon(
+                  Icons.search,
+                  color: Color(0xff022868),
+                  size: 27,
+                ),
               ),
               const SizedBox(
                 width: 25,

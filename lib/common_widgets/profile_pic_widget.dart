@@ -22,6 +22,15 @@ class ProfilePicWidget extends StatelessWidget {
       Colors.purple,
       Colors.brown,
       Colors.blue,
+      Colors.orangeAccent,
+      Colors.yellowAccent,
+      Colors.redAccent,
+      Colors.pinkAccent,
+      Colors.indigoAccent,
+      Colors.teal,
+      Colors.cyan,
+      Colors.lime,
+      Colors.lightGreen,
     ];
     String firstLetter = 'U';
     firstLetter = name.split('').first;
