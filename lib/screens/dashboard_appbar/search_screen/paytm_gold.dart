@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:paytmclone/models/dashboard_appbar/paytm_gold/btm_nav_bar_model.dart';
 import 'package:paytmclone/models/dashboard_appbar/search_screen/paytm_gold._model.dart';
+import 'package:paytmclone/screens/dashboard_appbar/search_screen/paytm_gold/buy_gold_screen.dart';
+import 'package:paytmclone/screens/dashboard_appbar/search_screen/paytm_gold/delivery_gold_screen.dart';
+import 'package:paytmclone/screens/dashboard_appbar/search_screen/paytm_gold/gift_gold_screen.dart';
+import 'package:paytmclone/screens/dashboard_appbar/search_screen/paytm_gold/sell_gold_screen.dart';
 
 class PaytmGoldScreen extends StatefulWidget {
   const PaytmGoldScreen({super.key});
@@ -30,9 +35,55 @@ class _PaytmGoldScreenState extends State<PaytmGoldScreen> {
       text: 'Delivery',
     ),
   ];
+  List<BtmNavBarModel> btmNavBarModelList = [
+    BtmNavBarModel(
+      icon: Icons.home_outlined,
+      text: 'Home',
+    ),
+    BtmNavBarModel(
+      icon: Icons.luggage_outlined,
+      text: 'Savings Plan',
+    ),
+    BtmNavBarModel(
+      icon: Icons.lock_reset_outlined,
+      text: 'Locker',
+    ),
+    BtmNavBarModel(
+      icon: Icons.handshake_outlined,
+      text: 'Transaction',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 10,
+              spreadRadius: 3,
+              blurStyle: BlurStyle.outer,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+          child: GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              childAspectRatio: 1 / 0.7,
+            ),
+            itemCount: btmNavBarModelList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BtmNavBarWidget(
+                btmNavBarModel: btmNavBarModelList[index],
+              );
+            },
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -119,9 +170,53 @@ class _PaytmGoldScreenState extends State<PaytmGoldScreen> {
                   },
                 ),
               ),
+              const SizedBox(
+                height: 15,
+              ),
+              goldBuyOrSell == 0
+                  ? const BuyGoldScreen()
+                  : goldBuyOrSell == 1
+                      ? const SellGoldScreen()
+                      : goldBuyOrSell == 2
+                          ? const GiftGoldScreen()
+                          : const DeliveryGoldScreen(),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BtmNavBarWidget extends StatelessWidget {
+  final BtmNavBarModel btmNavBarModel;
+  const BtmNavBarWidget({
+    super.key,
+    required this.btmNavBarModel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            btmNavBarModel.icon,
+            color: const Color(0xffC7A162),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            btmNavBarModel.text,
+            style: const TextStyle(
+              color: Color(0xffC7A162),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -141,7 +236,7 @@ class GoldBuyorSellText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 0),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
       decoration: BoxDecoration(
         border: Border(
           bottom: goldBuyOrSell == index
@@ -149,11 +244,14 @@ class GoldBuyorSellText extends StatelessWidget {
               : BorderSide.none,
         ),
       ),
-      child: Text(
-        goldBuyorSellTextModel.text,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Color(0xff092C6C),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Text(
+          goldBuyorSellTextModel.text,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Color(0xff092C6C),
+          ),
         ),
       ),
     );
