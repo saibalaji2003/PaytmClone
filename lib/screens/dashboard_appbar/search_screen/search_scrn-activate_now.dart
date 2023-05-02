@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paytmclone/models/payment_history_model.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
-import 'package:paytmclone/widgets/Bank_and_History/paytm_history_widget.dart';
+import 'package:paytmclone/widgets/bank_and_history/paytm_history_widget.dart';
 
 class ActivateNowScreen extends StatelessWidget {
   const ActivateNowScreen({super.key});

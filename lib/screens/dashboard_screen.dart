@@ -5,6 +5,7 @@ import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/screens/all_services.dart';
 import 'package:paytmclone/screens/balance_and_history.dart';
 import 'package:paytmclone/screens/cashback_and_offers.dart';
+import 'package:paytmclone/screens/credit_cards.dart';
 import 'package:paytmclone/screens/dashboard_appbar/message_screen.dart';
 import 'package:paytmclone/screens/dashboard_appbar/search_screen.dart';
 import 'package:paytmclone/screens/education_fees.dart';
@@ -526,6 +527,7 @@ class DashboardScreen extends StatelessWidget {
                                     icon: Icons.credit_card,
                                     text2: 'Credit',
                                     text3: 'Cards',
+                                    navigatorScreen: CreditCardScreen(),
                                   ),
                                   PaymentMethodsWidget(
                                     icon: Icons.wallet,
