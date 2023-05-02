@@ -84,7 +84,7 @@ class CashbackWonScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         primary: true,
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             Container(
