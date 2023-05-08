@@ -28,6 +28,7 @@ import 'package:paytmclone/widgets/payment_methods.dart';
 import 'package:paytmclone/widgets/upi_lite_container.dart';
 import 'package:paytmclone/widgets/upi_money_transfer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:torch_light/torch_light.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({
@@ -283,12 +284,48 @@ class _DashboardScreenState extends State<DashboardScreen> {
       saleTextShown: false,
     ),
   ];
+  Future<bool> _isTorchAvailable(BuildContext context) async {
+    try {
+      return await TorchLight.isTorchAvailable();
+    } on Exception catch (_) {
+      _showMessage(
+        'Could not check if the device has an available torch',
+        context,
+      );
+      rethrow;
+    }
+  }
+
+  Future<void> _enableTorch(BuildContext context) async {
+    try {
+      await TorchLight.enableTorch();
+    } on Exception catch (_) {
+      _showMessage('Could not enable torch', context);
+    }
+  }
+
+  Future<void> _disableTorch(BuildContext context) async {
+    try {
+      await TorchLight.disableTorch();
+    } on Exception catch (_) {
+      _showMessage('Could not disable torch', context);
+    }
+  }
+
+  void _showMessage(String message, BuildContext context) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  bool isTorchOn = false;
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     PageController pageController = PageController();
     final double phoneHeight = MediaQuery.of(context).size.height;
     final double phoneWidth = MediaQuery.of(context).size.width;
+    bool isFlashLightOn = false;
 
     return PageView(
       scrollDirection: Axis.horizontal,
@@ -348,6 +385,58 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             centerTitle: true,
             actions: [
+              FutureBuilder<bool>(
+                future: _isTorchAvailable(context),
+                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                  if (snapshot.hasData && snapshot.data!) {
+                    return GestureDetector(
+                      onTap: () async {
+                        // try {
+                        //   await TorchLight.enableTorch();
+                        // } on Exception catch (_) {
+                        //   // Handle error
+                        // }
+
+                        // try {
+                        //   await TorchLight.disableTorch();
+                        // } on Exception catch (_) {
+                        //   // Handle error
+                        //   Fluttertoast.showToast(msg: 'Not Available');
+                        // }
+                        if (isTorchOn == true) {
+                          isTorchOn = false;
+                          setState(() {});
+
+                          _disableTorch(context);
+                        } else {
+                          isTorchOn = true;
+                          setState(() {});
+
+                          _enableTorch(context);
+                        }
+                      },
+                      child: Icon(
+                        isTorchOn
+                            ? Icons.lightbulb_outline
+                            : Icons.lightbulb_circle_outlined,
+                        color: const Color(0xff022868),
+                        size: 27,
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    return const Center(
+                      child: Text('No torch available.'),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(
+                width: 25,
+              ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
