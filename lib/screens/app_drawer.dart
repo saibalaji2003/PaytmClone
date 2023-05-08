@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paytmclone/common_widgets/drawer_list_widget.dart';
 import 'package:paytmclone/models/drawer_listview.dart';
+import 'package:paytmclone/screens/app_drawer/become_a_merchant.dart';
 
 class AppDrawerWidget extends StatelessWidget {
   const AppDrawerWidget({
@@ -51,7 +52,13 @@ class AppDrawerWidget extends StatelessWidget {
         icon: Icons.currency_exchange_outlined,
         text1: 'Instant Personal Loan',
         text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
+      ),
+      DrawerListModel(
+        icon: Icons.manage_accounts_outlined,
+        text1: 'Become a Merchant',
+        text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
         isDividerShown: false,
+        navigatorScreen: const BecomeAMerchantScreen(),
       ),
     ];
 
