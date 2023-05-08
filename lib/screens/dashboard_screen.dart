@@ -12,6 +12,7 @@ import 'package:paytmclone/screens/education_fees.dart';
 import 'package:paytmclone/screens/free_credit_scrore.dart';
 import 'package:paytmclone/screens/mobile_recharge.dart';
 import 'package:paytmclone/screens/paytm_wallet.dart';
+import 'package:paytmclone/screens/personal_loan.dart';
 import 'package:paytmclone/screens/refer_and_win.dart';
 import 'package:paytmclone/screens/rent_via_credit_card.dart';
 import 'package:paytmclone/screens/ticket_booking.dart/travel_screen.dart';
@@ -28,257 +29,262 @@ import 'package:paytmclone/widgets/upi_lite_container.dart';
 import 'package:paytmclone/widgets/upi_money_transfer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    List<PaymentMethodsWidget> paymentMethodsList = [
-      const PaymentMethodsWidget(
-        icon: Icons.smartphone,
-        text2: 'Mobile',
-        text3: 'Recharge',
-        navigatorScreen: MobileRechargeScreen(),
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.credit_card,
-        text2: 'Rent via',
-        text3: 'Credit Card',
-        text1: 'Lowest Fee',
-        isText1Shown: true,
-        navigatorScreen: RentViaCreditCardScreen(),
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.data_thresholding,
-        text2: 'DTH',
-        text3: 'Recharge',
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.lightbulb,
-        text2: 'Electricity',
-        text3: 'Bill',
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.credit_card,
-        text2: 'Credit Card',
-        text3: 'Payment',
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.apartment_outlined,
-        text2: 'Apartment',
-        text3: '',
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.cast_for_education,
-        text2: 'Education',
-        text3: 'Fees',
-        navigatorScreen: EducationFees(),
-      ),
-      const PaymentMethodsWidget(
-        icon: Icons.mobile_friendly,
-        text2: 'Mobile',
-        text3: 'Recharge',
-      ),
-    ];
-    List<FeaturedModel> featuredModelList = [
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
-        text1: 'Refer &',
-        text2: 'Earn',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_960_720.png',
-        text1: 'UPI lite',
-        text2: '',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2017/03/24/07/28/twitter-2170426__340.png',
-        text1: 'Mamaearth',
-        text2: '',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png',
-        text1: 'Astrotalk',
-        text2: 'Earn',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924__340.png',
-        text1: 'Products at',
-        text2: '₹1',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/11/19/03/08/youtube-1837872__340.png',
-        text1: 'Redeem',
-        text2: 'Now',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/12/26/18/33/logo-1932539__340.png',
-        text1: 'Paytm',
-        text2: 'Autopay',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/04/01/00/22/cat-1298141__340.png',
-        text1: 'Paytm',
-        text2: 'Health',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-    ];
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
 
-    List<FeaturedModel> promotionModelList = [
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2017/08/20/18/54/woman-2662775__340.jpg',
-        text1: 'Airtel',
-        text2: 'Broadband',
-        adText: 'AD',
-        saleText: 'Sale',
-        isAdShown: true,
-        saleContainerShown: true,
-        isAdTextShown: true,
-        saleTextShown: true,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2017/06/04/12/30/suwancoffee-2370934__340.jpg',
-        text1: 'Flat 33%',
-        text2: 'OFF',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2017/10/25/19/46/piggy-bank-2889046_960_720.jpg',
-        text1: 'Flat 25%',
-        text2: 'OFF',
-        adText: 'AD',
-        saleText: 'Sale',
-        isAdShown: true,
-        saleContainerShown: true,
-        isAdTextShown: true,
-        saleTextShown: true,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2017/10/25/19/45/piggy-bank-2889042__340.jpg',
-        text1: 'Airtel',
-        text2: 'Postpaid',
-        adText: 'AD',
-        saleText: 'Sale',
-        isAdShown: true,
-        saleContainerShown: true,
-        isAdTextShown: true,
-        saleTextShown: true,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
-        text1: 'Flat 30%',
-        text2: 'OFF',
-        adText: '',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
-        text1: 'Airtel',
-        text2: 'Broadband',
-        adText: 'AD',
-        saleText: 'Sale',
-        isAdShown: true,
-        saleContainerShown: true,
-        isAdTextShown: true,
-        saleTextShown: true,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
-        text1: 'Airtel',
-        text2: 'Broadband',
-        adText: 'adText',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-      FeaturedModel(
-        image:
-            'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
-        text1: 'Airtel',
-        text2: 'Broadband',
-        adText: 'adText',
-        saleText: '',
-        isAdShown: false,
-        isAdTextShown: false,
-        saleContainerShown: false,
-        saleTextShown: false,
-      ),
-    ];
+class _DashboardScreenState extends State<DashboardScreen> {
+  List<PaymentMethodsWidget> paymentMethodsList = [
+    const PaymentMethodsWidget(
+      icon: Icons.smartphone,
+      text2: 'Mobile',
+      text3: 'Recharge',
+      navigatorScreen: MobileRechargeScreen(),
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.credit_card,
+      text2: 'Rent via',
+      text3: 'Credit Card',
+      text1: 'Lowest Fee',
+      isText1Shown: true,
+      navigatorScreen: RentViaCreditCardScreen(),
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.data_thresholding,
+      text2: 'DTH',
+      text3: 'Recharge',
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.lightbulb,
+      text2: 'Electricity',
+      text3: 'Bill',
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.credit_card,
+      text2: 'Credit Card',
+      text3: 'Payment',
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.apartment_outlined,
+      text2: 'Apartment',
+      text3: '',
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.cast_for_education,
+      text2: 'Education',
+      text3: 'Fees',
+      navigatorScreen: EducationFees(),
+    ),
+    const PaymentMethodsWidget(
+      icon: Icons.mobile_friendly,
+      text2: 'Mobile',
+      text3: 'Recharge',
+    ),
+  ];
+  List<FeaturedModel> featuredModelList = [
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
+      text1: 'Refer &',
+      text2: 'Earn',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_960_720.png',
+      text1: 'UPI lite',
+      text2: '',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2017/03/24/07/28/twitter-2170426__340.png',
+      text1: 'Mamaearth',
+      text2: '',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png',
+      text1: 'Astrotalk',
+      text2: 'Earn',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924__340.png',
+      text1: 'Products at',
+      text2: '₹1',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/11/19/03/08/youtube-1837872__340.png',
+      text1: 'Redeem',
+      text2: 'Now',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/12/26/18/33/logo-1932539__340.png',
+      text1: 'Paytm',
+      text2: 'Autopay',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/04/01/00/22/cat-1298141__340.png',
+      text1: 'Paytm',
+      text2: 'Health',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+  ];
+
+  List<FeaturedModel> promotionModelList = [
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2017/08/20/18/54/woman-2662775__340.jpg',
+      text1: 'Airtel',
+      text2: 'Broadband',
+      adText: 'AD',
+      saleText: 'Sale',
+      isAdShown: true,
+      saleContainerShown: true,
+      isAdTextShown: true,
+      saleTextShown: true,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2017/06/04/12/30/suwancoffee-2370934__340.jpg',
+      text1: 'Flat 33%',
+      text2: 'OFF',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2017/10/25/19/46/piggy-bank-2889046_960_720.jpg',
+      text1: 'Flat 25%',
+      text2: 'OFF',
+      adText: 'AD',
+      saleText: 'Sale',
+      isAdShown: true,
+      saleContainerShown: true,
+      isAdTextShown: true,
+      saleTextShown: true,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2017/10/25/19/45/piggy-bank-2889042__340.jpg',
+      text1: 'Airtel',
+      text2: 'Postpaid',
+      adText: 'AD',
+      saleText: 'Sale',
+      isAdShown: true,
+      saleContainerShown: true,
+      isAdTextShown: true,
+      saleTextShown: true,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
+      text1: 'Flat 30%',
+      text2: 'OFF',
+      adText: '',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
+      text1: 'Airtel',
+      text2: 'Broadband',
+      adText: 'AD',
+      saleText: 'Sale',
+      isAdShown: true,
+      saleContainerShown: true,
+      isAdTextShown: true,
+      saleTextShown: true,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
+      text1: 'Airtel',
+      text2: 'Broadband',
+      adText: 'adText',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+    FeaturedModel(
+      image:
+          'https://cdn.pixabay.com/photo/2016/12/09/04/02/presents-1893642__340.jpg',
+      text1: 'Airtel',
+      text2: 'Broadband',
+      adText: 'adText',
+      saleText: '',
+      isAdShown: false,
+      isAdTextShown: false,
+      saleContainerShown: false,
+      saleTextShown: false,
+    ),
+  ];
+  @override
+  Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     PageController pageController = PageController();
     final double phoneHeight = MediaQuery.of(context).size.height;
@@ -428,18 +434,296 @@ class DashboardScreen extends StatelessWidget {
                                   fontSize: 19,
                                 ),
                               ),
-                              Container(
-                                padding: const EdgeInsets.all(7),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: const Color(0xffF5F9FC),
-                                ),
-                                child: Text(
-                                  '9573053883@paytm',
-                                  style: TextStyle(
-                                      color: Colors.grey.shade500,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Stack(
+                                        alignment: Alignment.topCenter,
+                                        // clipBehavior: Clip.none,
+                                        children: [
+                                          Dialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              // mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10, top: 5),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(5),
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            color: Colors.grey,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                          ),
+                                                          child: const Text(
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            'x',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 17,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: const [
+                                                    Text(
+                                                      'Vishwanath Sai Balaji',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 19,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    Icon(
+                                                      Icons.check_circle,
+                                                      color: Colors.blue,
+                                                    )
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: const [
+                                                    Text(
+                                                      'UPI ID: 134761744@paytm',
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        // fontWeight: FontWeight.bold,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    Text(
+                                                      'Copy',
+                                                      style: TextStyle(
+                                                        color: Colors.blue,
+                                                        // fontWeight: FontWeight.bold,
+                                                        fontSize: 15,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                const Text(
+                                                  'Paytm: 134761744',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    // fontWeight: FontWeight.bold,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Image.asset(
+                                                  'assets/images/qr_code.jpg',
+                                                  height: 200,
+                                                  width: 200,
+                                                ),
+                                                const SizedBox(
+                                                  height: 15,
+                                                ),
+                                                RichText(
+                                                  textAlign: TextAlign.center,
+                                                  text: const TextSpan(
+                                                    text:
+                                                        'Payments made to this Qr through Paytm, Gpay, phonepe, or any other UPI app will be received in your ',
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14),
+                                                    children: <TextSpan>[
+                                                      TextSpan(
+                                                        text:
+                                                            'linked bank account',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.blue,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                        text:
+                                                            ' (State Bank of India - 3684)',
+                                                        style: TextStyle(
+                                                            color: Colors.grey,
+                                                            fontSize: 14),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 14,
+                                                      vertical: 5),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    border: Border.all(
+                                                        color: Colors.blue),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: const [
+                                                      Icon(
+                                                        Icons.share,
+                                                        color: Colors.blue,
+                                                        size: 17,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      Text(
+                                                        'Share QR',
+                                                        style: TextStyle(
+                                                          color: Colors.blue,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 17,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 25,
+                                                ),
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.all(4),
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: Colors.blue,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(1),
+                                                      bottomRight:
+                                                          Radius.circular(1),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.all(4),
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: Colors.indigo,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(15),
+                                                      bottomRight:
+                                                          Radius.circular(15),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: 0,
+                                            child: Stack(
+                                              children: [
+                                                ClipOval(
+                                                  child: Image.asset(
+                                                    'assets/images/images.png',
+                                                    height: 80,
+                                                    width: 80,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  right: 7,
+                                                  bottom: 0,
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(4),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      color: Colors.white,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: const Icon(
+                                                      Icons.camera,
+                                                      color: Colors.grey,
+                                                      size: 15,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: const Color(0xffF5F9FC),
+                                  ),
+                                  child: Text(
+                                    '134761744@paytm',
+                                    style: TextStyle(
+                                        color: Colors.grey.shade500,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ],
@@ -541,6 +825,7 @@ class DashboardScreen extends StatelessWidget {
                                     text3: 'Loan',
                                     text1: 'Superfast',
                                     isText1Shown: true,
+                                    navigatorScreen: PersonalLoanScreen(),
                                   ),
                                 ],
                               ),
@@ -603,18 +888,37 @@ class DashboardScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 13),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.grey.shade300),
-                          ),
-                          child: const UPILiteWidget(
-                            icon: Icons.payments,
-                            text1: 'UPI Lite',
-                            text2: 'Refer & Earn ₹25',
+                        child: Material(
+                          shadowColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.transparent,
+                          child: InkWell(
+                            // highlightColor: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            focusColor: Colors.transparent,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ReferAndWinScreen(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 13),
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.grey.shade300),
+                              ),
+                              child: const UPILiteWidget(
+                                icon: Icons.payments,
+                                text1: 'Refer a Friend',
+                                text2: 'Win iPhone 14',
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -622,18 +926,28 @@ class DashboardScreen extends StatelessWidget {
                         width: 7,
                       ),
                       Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 13),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.grey.shade300),
-                          ),
-                          child: const UPILiteWidget(
-                            icon: Icons.currency_rupee,
-                            text1: 'Cash Crunch?',
-                            text2: 'Get a Loan',
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const CreditCardScreen(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 13),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey.shade300),
+                            ),
+                            child: const UPILiteWidget(
+                              icon: Icons.currency_rupee,
+                              text1: 'Credit Cards',
+                              text2: 'iPhone Jeeto',
+                            ),
                           ),
                         ),
                       ),
@@ -667,18 +981,29 @@ class DashboardScreen extends StatelessWidget {
                                   fontSize: 19,
                                 ),
                               ),
-                              Container(
-                                padding: const EdgeInsets.all(7),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: const Color(0xffF5F9FC),
-                                ),
-                                child: Text(
-                                  'My Bills',
-                                  style: TextStyle(
-                                      color: Colors.grey.shade500,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ViewMoreScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: const Color(0xffF5F9FC),
+                                  ),
+                                  child: Text(
+                                    'My Bills',
+                                    style: TextStyle(
+                                        color: Colors.grey.shade500,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ],

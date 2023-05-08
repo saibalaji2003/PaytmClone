@@ -1133,13 +1133,11 @@ class ActiveOffersContainer extends StatelessWidget {
               SizedBox(
                 height: 30,
                 width: 150,
-                child: Expanded(
-                  child: LinearPercentIndicator(
-                    backgroundColor: Colors.grey,
-                    // fillColor: Colors.green,
-                    barRadius: const Radius.circular(15),
-                    percent: 0.05,
-                  ),
+                child: LinearPercentIndicator(
+                  backgroundColor: Colors.grey,
+                  // fillColor: Colors.green,
+                  barRadius: const Radius.circular(15),
+                  percent: 0.05,
                 ),
               ),
             ],
@@ -1326,6 +1324,7 @@ class CashbackContainerWidget extends StatelessWidget {
         }
       },
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           Container(
             padding: const EdgeInsets.symmetric(
@@ -1362,7 +1361,7 @@ class CashbackContainerWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -5,
+            top: -10,
             right: 28,
             child: Container(
               padding: const EdgeInsets.all(3),

@@ -73,7 +73,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                     width: 5,
                   ),
                   Text(
-                    'View crad benefits',
+                    'View card benefits',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -301,12 +301,13 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 ),
               ),
               Checkbox(
-                  activeColor: Colors.red,
-                  value: termsValue,
-                  onChanged: (value) {
-                    termsValue = value ?? false;
-                    setState(() {});
-                  })
+                activeColor: Colors.red,
+                value: termsValue,
+                onChanged: (value) {
+                  termsValue = value ?? false;
+                  setState(() {});
+                },
+              ),
             ],
           ),
         ),
