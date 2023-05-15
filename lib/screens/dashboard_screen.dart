@@ -2074,6 +2074,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
           floatingActionButton: FloatingActionButton.extended(
+            elevation: 15,
+            splashColor: Colors.red,
+            disabledElevation: 15,
             extendedPadding: const EdgeInsets.all(15),
             label: const Text(
               'Scan Any QR',
