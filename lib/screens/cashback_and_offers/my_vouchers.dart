@@ -105,7 +105,7 @@ class MyVouchersScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
@@ -117,12 +117,13 @@ class MyVouchersScreen extends StatelessWidget {
                     Icons.search,
                     color: Colors.grey,
                   ),
+                  contentPadding: const EdgeInsets.all(0),
                   filled: true,
                   fillColor: const Color(0xffF5F8FD),
                   hintText: 'Search brand or voucher name',
                   hintStyle: const TextStyle(
                     color: Colors.grey,
-                    fontWeight: FontWeight.bold,
+                    // fontWeight: FontWeight.bold,
                   ),
                   // border: OutlineInputBorder(
                   //   borderSide: BorderSide(

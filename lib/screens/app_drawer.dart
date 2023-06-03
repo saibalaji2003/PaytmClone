@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:paytmclone/common_widgets/drawer_list_widget.dart';
 import 'package:paytmclone/models/drawer_listview.dart';
 import 'package:paytmclone/screens/app_drawer/become_a_merchant.dart';
+import 'package:paytmclone/screens/app_drawer/orders_and_bookings.dart';
 
 class AppDrawerWidget extends StatelessWidget {
   const AppDrawerWidget({
@@ -26,6 +27,7 @@ class AppDrawerWidget extends StatelessWidget {
         icon: Icons.card_giftcard,
         text1: 'Orders & Bookings',
         text2: 'Recharge, Bill Payments, Shopping, Movies, Travel & Others',
+        navigatorScreen: const OrdersAndBookingsScreen(),
       ),
       DrawerListModel(
         icon: Icons.money,
