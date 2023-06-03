@@ -37,7 +37,8 @@ dependencies:
   percent_indicator: ^4.2.3
   connectivity_plus: ^3.0.4 
   torch_light: ^1.0.0
-
+  flutter_vibrate: ^1.3.0
+  http: ^0.13.0
   
 
 

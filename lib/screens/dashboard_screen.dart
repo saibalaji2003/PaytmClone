@@ -20,6 +20,8 @@ import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
 import 'package:paytmclone/screens/view_more_screen.dart';
+import 'package:paytmclone/tesing_APIs/fakestore_api.dart';
+import 'package:paytmclone/tesing_APIs/testing_api.dart';
 import 'package:paytmclone/widgets/benefits_container.dart';
 import 'package:paytmclone/widgets/bottom_blue_container.dart';
 import 'package:paytmclone/widgets/featured_widget.dart';
@@ -390,7 +392,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                   if (snapshot.hasData && snapshot.data!) {
                     return GestureDetector(
-                      onTap: () async {
+                      onDoubleTap: () async {
                         // try {
                         //   await TorchLight.enableTorch();
                         // } on Exception catch (_) {
@@ -437,19 +439,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(
                 width: 25,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SearchScreen(),
+              Material(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(25),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(25),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      ),
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Icon(
+                      Icons.search,
+                      color: Color(0xff022868),
+                      size: 27,
                     ),
-                  );
-                },
-                child: const Icon(
-                  Icons.search,
-                  color: Color(0xff022868),
-                  size: 27,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -557,28 +567,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                               context);
                                                         },
                                                         child: Container(
-                                                          alignment:
-                                                              Alignment.center,
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(5),
+                                                                  .all(3),
                                                           decoration:
-                                                              const BoxDecoration(
-                                                            color: Colors.grey,
+                                                              BoxDecoration(
                                                             shape:
                                                                 BoxShape.circle,
+                                                            color: Colors
+                                                                .grey.shade600,
                                                           ),
-                                                          child: const Text(
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            'x',
-                                                            style: TextStyle(
+                                                          child: const Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        10),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .clear_outlined,
                                                               color:
                                                                   Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 17,
+                                                              size: 15,
                                                             ),
                                                           ),
                                                         ),
@@ -830,7 +839,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 icon: Icons.qr_code_2_outlined,
                                 text1: 'Scan &',
                                 text2: 'Pay',
-                                // navigatorScreen: MobileOrContactScreen(),
+                                navigatorScreen: TestingAPIScreen(),
                               ),
                               UpiMoneyTransferWidget(
                                 icon: Icons.contact_page_outlined,
@@ -858,6 +867,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         const BottomBlueContainerWIdget(
                           text: 'Scan Paytm QR, Pay & Get ₹15 Cashback',
+                          navigator: FakestoreAPIScreen(),
                         ),
                       ],
                     ),

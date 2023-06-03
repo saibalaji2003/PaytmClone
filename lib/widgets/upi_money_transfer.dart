@@ -27,6 +27,17 @@ class UpiMoneyTransferWidget extends StatelessWidget {
               builder: (context) => navigatorScreen!,
             ),
           );
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(
+          //     content: Text(
+          //       'opened',
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     ),
+          //   ),
+          // );
         }
       },
       child: Column(
