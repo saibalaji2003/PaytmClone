@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:paytmclone/screens/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
@@ -20,6 +21,7 @@ import 'package:paytmclone/screens/to_bank_account.dart';
 import 'package:paytmclone/screens/to_mobile_or_contact.dart';
 import 'package:paytmclone/screens/to_UPI_apps.dart';
 import 'package:paytmclone/screens/view_more_screen.dart';
+import 'package:paytmclone/tesing_APIs/employees_API.dart';
 import 'package:paytmclone/tesing_APIs/fakestore_api.dart';
 import 'package:paytmclone/tesing_APIs/testing_api.dart';
 import 'package:paytmclone/widgets/benefits_container.dart';
@@ -61,6 +63,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       icon: Icons.data_thresholding,
       text2: 'DTH',
       text3: 'Recharge',
+      navigatorScreen: DummyAPIScreen(),
     ),
     const PaymentMethodsWidget(
       icon: Icons.lightbulb,
@@ -317,6 +320,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void _showMessage(String message, BuildContext context) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  void copyToClipboard(String text) {
+    Clipboard.setData(ClipboardData(text: text));
   }
 
   bool isTorchOn = false;
@@ -623,8 +630,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
-                                                  children: const [
-                                                    Text(
+                                                  children: [
+                                                    const Text(
                                                       'UPI ID: 134761744@paytm',
                                                       style: TextStyle(
                                                         color: Colors.black,
@@ -632,15 +639,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                         fontSize: 15,
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 5,
                                                     ),
-                                                    Text(
-                                                      'Copy',
-                                                      style: TextStyle(
-                                                        color: Colors.blue,
-                                                        // fontWeight: FontWeight.bold,
-                                                        fontSize: 15,
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        String textToCopy =
+                                                            "134761744@paytm";
+                                                        copyToClipboard(
+                                                            textToCopy);
+                                                        print(
+                                                            'Copied to clipboard: $textToCopy');
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                          content: Text(
+                                                            'Copied',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                          backgroundColor:
+                                                              Colors.black,
+                                                        ));
+                                                      },
+                                                      child: const Text(
+                                                        'Copy',
+                                                        style: TextStyle(
+                                                          color: Colors.blue,
+                                                          // fontWeight: FontWeight.bold,
+                                                          fontSize: 15,
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
