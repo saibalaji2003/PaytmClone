@@ -26,7 +26,7 @@ class _TestingAPIScreenState extends State<TestingAPIScreen> {
 
   @override
   void dispose() {
-    print('diasposecalled');
+    print('disposecalled');
     super.dispose();
   }
 
