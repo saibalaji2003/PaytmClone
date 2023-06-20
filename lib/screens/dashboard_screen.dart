@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:paytmclone/screens/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
@@ -319,6 +320,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         .showSnackBar(SnackBar(content: Text(message)));
   }
 
+  void copyToClipboard(String text) {
+    Clipboard.setData(ClipboardData(text: text));
+  }
+
   bool isTorchOn = false;
 
   @override
@@ -437,33 +442,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
               const SizedBox(
-                width: 25,
+                width: 10,
               ),
-              Material(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(25),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(25),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SearchScreen(),
-                      ),
-                    );
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Icon(
-                      Icons.search,
-                      color: Color(0xff022868),
-                      size: 27,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
                     ),
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Icon(
+                    Icons.search,
+                    color: Color(0xff022868),
+                    size: 27,
                   ),
                 ),
               ),
               const SizedBox(
-                width: 25,
+                width: 10,
               ),
               GestureDetector(
                 onTap: () {
@@ -481,7 +481,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
               const SizedBox(
-                width: 20,
+                width: 10,
               ),
             ],
           ),
@@ -538,51 +538,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return Stack(
-                                        alignment: Alignment.topCenter,
-                                        // clipBehavior: Clip.none,
-                                        children: [
-                                          Dialog(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              // mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10, top: 5),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(3),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color: Colors
-                                                                .grey.shade600,
-                                                          ),
-                                                          child: const Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        10),
-                                                            child: Icon(
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Stack(
+                                          alignment: Alignment.topCenter,
+                                          clipBehavior: Clip.none,
+                                          children: [
+                                            Container(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                // mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 10, top: 5),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: Container(
+                                                            height: 23,
+                                                            width: 23,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              color: Colors.grey
+                                                                  .shade600,
+                                                            ),
+                                                            child: const Icon(
                                                               Icons
                                                                   .clear_outlined,
                                                               color:
@@ -590,221 +585,268 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                               size: 15,
                                                             ),
                                                           ),
-                                                        ),
-                                                      )
-                                                    ],
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: const [
-                                                    Text(
-                                                      'Vishwanath Sai Balaji',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 19,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    Icon(
-                                                      Icons.check_circle,
-                                                      color: Colors.blue,
-                                                    )
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: const [
-                                                    Text(
-                                                      'UPI ID: 134761744@paytm',
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        // fontWeight: FontWeight.bold,
-                                                        fontSize: 15,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    Text(
-                                                      'Copy',
-                                                      style: TextStyle(
-                                                        color: Colors.blue,
-                                                        // fontWeight: FontWeight.bold,
-                                                        fontSize: 15,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                const Text(
-                                                  'Paytm: 134761744',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    // fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
+                                                  const SizedBox(
+                                                    height: 40,
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Image.asset(
-                                                  'assets/images/qr_code.jpg',
-                                                  height: 200,
-                                                  width: 200,
-                                                ),
-                                                const SizedBox(
-                                                  height: 15,
-                                                ),
-                                                RichText(
-                                                  textAlign: TextAlign.center,
-                                                  text: const TextSpan(
-                                                    text:
-                                                        'Payments made to this Qr through Paytm, Gpay, phonepe, or any other UPI app will be received in your ',
-                                                    style: TextStyle(
-                                                        color: Colors.grey,
-                                                        fontSize: 14),
-                                                    children: <TextSpan>[
-                                                      TextSpan(
-                                                        text:
-                                                            'linked bank account',
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: const [
+                                                      Text(
+                                                        'Vishwanath Sai Balaji',
                                                         style: TextStyle(
+                                                          color: Colors.black,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Colors.blue,
+                                                          fontSize: 19,
                                                         ),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            ' (State Bank of India - 3684)',
-                                                        style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 14),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Container(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 14,
-                                                      vertical: 5),
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    border: Border.all(
-                                                        color: Colors.blue),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: const [
-                                                      Icon(
-                                                        Icons.share,
-                                                        color: Colors.blue,
-                                                        size: 17,
                                                       ),
                                                       SizedBox(
                                                         width: 5,
                                                       ),
-                                                      Text(
-                                                        'Share QR',
+                                                      Icon(
+                                                        Icons.check_circle,
+                                                        color: Colors.blue,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Text(
+                                                        'UPI ID: 134761744@paytm',
                                                         style: TextStyle(
-                                                          color: Colors.blue,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 17,
+                                                          color: Colors.black,
+                                                          // fontWeight: FontWeight.bold,
+                                                          fontSize: 15,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          String textToCopy =
+                                                              "134761744@paytm";
+                                                          copyToClipboard(
+                                                              textToCopy);
+                                                          print(
+                                                              'Copied to clipboard: $textToCopy');
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                                  const SnackBar(
+                                                            content: Text(
+                                                              'Copied',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            ),
+                                                            backgroundColor:
+                                                                Colors.black,
+                                                          ));
+                                                        },
+                                                        child: const Text(
+                                                          'Copy',
+                                                          style: TextStyle(
+                                                            color: Colors.blue,
+                                                            // fontWeight: FontWeight.bold,
+                                                            fontSize: 15,
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 25,
-                                                ),
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.all(4),
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    color: Colors.blue,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(1),
-                                                      bottomRight:
-                                                          Radius.circular(1),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  const Text(
+                                                    'Paytm: 134761744',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      // fontWeight: FontWeight.bold,
+                                                      fontSize: 15,
                                                     ),
                                                   ),
-                                                ),
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.all(4),
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    color: Colors.indigo,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                      bottomLeft:
-                                                          Radius.circular(15),
-                                                      bottomRight:
-                                                          Radius.circular(15),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Image.asset(
+                                                    'assets/images/qr_code.jpg',
+                                                    height: 200,
+                                                    width: 200,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                  RichText(
+                                                    textAlign: TextAlign.center,
+                                                    text: const TextSpan(
+                                                      text:
+                                                          'Payments made to this Qr through Paytm, Gpay, phonepe, or any other UPI app will be received in your ',
+                                                      style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 14),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text:
+                                                              'linked bank account',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors.blue,
+                                                          ),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              ' (State Bank of India - 3684)',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 14),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 0,
-                                            child: Stack(
-                                              children: [
-                                                ClipOval(
-                                                  child: Image.asset(
-                                                    'assets/images/images.png',
-                                                    height: 80,
-                                                    width: 80,
-                                                    fit: BoxFit.cover,
+                                                  const SizedBox(
+                                                    height: 20,
                                                   ),
-                                                ),
-                                                Positioned(
-                                                  right: 7,
-                                                  bottom: 0,
-                                                  child: Container(
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 14,
+                                                        vertical: 5),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25),
+                                                      border: Border.all(
+                                                          color: Colors.blue),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: const [
+                                                        Icon(
+                                                          Icons.share,
+                                                          color: Colors.blue,
+                                                          size: 17,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Text(
+                                                          'Share QR',
+                                                          style: TextStyle(
+                                                            color: Colors.blue,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 17,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 25,
+                                                  ),
+                                                  Container(
                                                     padding:
                                                         const EdgeInsets.all(4),
                                                     decoration:
                                                         const BoxDecoration(
-                                                      color: Colors.white,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: const Icon(
-                                                      Icons.camera,
-                                                      color: Colors.grey,
-                                                      size: 15,
+                                                      color: Colors.blue,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(1),
+                                                        bottomRight:
+                                                            Radius.circular(1),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Container(
+                                                    padding:
+                                                        const EdgeInsets.all(4),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      color: Colors.indigo,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(15),
+                                                        bottomRight:
+                                                            Radius.circular(15),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                            Positioned(
+                                              top: -45,
+                                              child: Container(
+                                                height: 80,
+                                                width: 80,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 10,
+                                                      spreadRadius: 10,
+                                                      color:
+                                                          Colors.grey.shade500,
+                                                    )
+                                                  ],
+                                                ),
+                                                child: Stack(
+                                                  clipBehavior: Clip.none,
+                                                  children: [
+                                                    ClipOval(
+                                                      child: Image.asset(
+                                                        'assets/images/images.png',
+                                                        height: 80,
+                                                        width: 80,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                      right: 7,
+                                                      bottom: 0,
+                                                      child: Container(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(4),
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          color: Colors.white,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: const Icon(
+                                                          Icons.camera,
+                                                          color: Colors.grey,
+                                                          size: 15,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );

@@ -73,7 +73,7 @@ class _TestingAPIScreenState extends State<TestingAPIScreen> {
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.push( 
                             context,
                             MaterialPageRoute(
                               builder: (context) => SeparateProductByIDScreen(
