@@ -8,10 +8,13 @@
 
 #include <awesome_notifications/awesome_notifications_plugin_c_api.h>
 #include <connectivity_plus/connectivity_plus_windows_plugin.h>
+#include <file_selector_windows/file_selector_windows.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   AwesomeNotificationsPluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("AwesomeNotificationsPluginCApi"));
   ConnectivityPlusWindowsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("ConnectivityPlusWindowsPlugin"));
+  FileSelectorWindowsRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("FileSelectorWindows"));
 }
