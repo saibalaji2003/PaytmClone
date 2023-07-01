@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:paytmclone/providers/home_provider.dart';
 import 'package:paytmclone/screens/app_drawer.dart';
 import 'package:paytmclone/models/featured_model.dart';
 import 'package:paytmclone/screens/all_services.dart';
@@ -30,6 +34,7 @@ import 'package:paytmclone/widgets/loans_container.dart';
 import 'package:paytmclone/widgets/payment_methods.dart';
 import 'package:paytmclone/widgets/upi_lite_container.dart';
 import 'package:paytmclone/widgets/upi_money_transfer.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:torch_light/torch_light.dart';
 
@@ -43,6 +48,14 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  late HomeProvider homeProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    homeProvider = context.read();
+  }
+
   List<PaymentMethodsWidget> paymentMethodsList = [
     const PaymentMethodsWidget(
       icon: Icons.smartphone,
@@ -324,15 +337,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
     Clipboard.setData(ClipboardData(text: text));
   }
 
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  PageController pageController = PageController();
+  bool isFlashLightOn = false;
+
   bool isTorchOn = false;
+
+  XFile? pickedFile;
+  PageController pageControllerForImages = PageController();
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-    PageController pageController = PageController();
+    debugPrint('callled');
     final double phoneHeight = MediaQuery.of(context).size.height;
     final double phoneWidth = MediaQuery.of(context).size.width;
-    bool isFlashLightOn = false;
 
     return PageView(
       scrollDirection: Axis.horizontal,
@@ -496,11 +514,141 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(13),
-                    child: Image.network(
-                      'https://cdn.pixabay.com/photo/2015/05/29/19/18/bicycle-789648__340.jpg',
-                      height: 125,
-                      width: double.infinity,
-                      fit: BoxFit.fitWidth,
+                    child: GestureDetector(
+                      onTap: () async {
+                        final ImagePicker picker = ImagePicker();
+
+                        final XFile? image =
+                            await picker.pickImage(source: ImageSource.camera);
+                        if (image != null) {
+                          debugPrint(image.name);
+                          homeProvider.changePickedFile(image);
+                          // pickedFile = image;
+                          // setState(() {});
+                        }
+                      },
+                      child: Consumer<HomeProvider>(
+                          builder: (context, value, child) {
+                        debugPrint('consumerCalled');
+                        return value.pickedFile == null
+                            ? Image.network(
+                                'https://cdn.pixabay.com/photo/2015/05/29/19/18/bicycle-789648__340.jpg',
+                                height: 125,
+                                width: double.infinity,
+                                fit: BoxFit.fitWidth,
+                              )
+                            : Stack(
+                                children: [
+                                  Image.file(
+                                    File(value.pickedFile!.path),
+                                    height: 125,
+                                    width: double.infinity,
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  Positioned(
+                                    right: 0,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        value.changePickedFile(null);
+                                      },
+                                      icon: const Icon(
+                                        Icons.cancel,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              );
+                      }),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Consumer<HomeProvider>(builder: (context, value, child) {
+                  return value.pickedImagesList.isEmpty
+                      ? const SizedBox()
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: SizedBox(
+                            height: 130,
+                            child: Stack(
+                              children: [
+                                PageView.builder(
+                                    controller: pageControllerForImages,
+                                    itemCount: value.pickedImagesList.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 3),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(13),
+                                          child: Image.file(
+                                            File(value
+                                                .pickedImagesList[index].path),
+                                            height: 125,
+                                            width: double.infinity,
+                                            fit: BoxFit.fitWidth,
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                Positioned(
+                                  bottom: 10,
+                                  child: SizedBox(
+                                    width: phoneWidth,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SmoothPageIndicator(
+                                            controller:
+                                                pageControllerForImages, // PageController
+                                            count:
+                                                value.pickedImagesList.length,
+                                            effect: ExpandingDotsEffect(
+                                              spacing: 5.0,
+                                              radius: 10.0,
+                                              dotWidth: 8.0,
+                                              dotHeight: 8.0,
+                                              paintStyle: PaintingStyle.fill,
+                                              strokeWidth: 1.5,
+                                              dotColor: Colors.grey.shade300,
+                                              activeDotColor: Colors.blue,
+                                            ),
+                                            onDotClicked: (index) {}),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ));
+                }),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: TextButton(
+                    onPressed: () async {
+                      final ImagePicker picker = ImagePicker();
+
+                      final List<XFile> images = await picker.pickMultiImage();
+                      debugPrint('${images.length}');
+                      homeProvider.addPickedImagesList(images);
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Upload Images'),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -592,11 +740,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                   const SizedBox(
                                                     height: 40,
                                                   ),
-                                                  Row(
+                                                  const Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .center,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         'Vishwanath Sai Balaji',
                                                         style: TextStyle(
@@ -645,16 +793,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                           ScaffoldMessenger.of(
                                                                   context)
                                                               .showSnackBar(
-                                                                  const SnackBar(
-                                                            content: Text(
-                                                              'Copied',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white),
+                                                            const SnackBar(
+                                                              content: Row(
+                                                                children: [
+                                                                  Text(
+                                                                    'Copied to Clipboard',
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white),
+                                                                  ),
+                                                                  Icon(
+                                                                    Icons.check,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              backgroundColor:
+                                                                  Colors.black,
                                                             ),
-                                                            backgroundColor:
-                                                                Colors.black,
-                                                          ));
+                                                          );
                                                         },
                                                         child: const Text(
                                                           'Copy',
@@ -734,10 +892,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                       border: Border.all(
                                                           color: Colors.blue),
                                                     ),
-                                                    child: Row(
+                                                    child: const Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
-                                                      children: const [
+                                                      children: [
                                                         Icon(
                                                           Icons.share,
                                                           color: Colors.blue,
@@ -872,11 +1030,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         const SizedBox(
                           height: 12,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: const [
+                            children: [
                               UpiMoneyTransferWidget(
                                 icon: Icons.qr_code_2_outlined,
                                 text1: 'Scan &',
@@ -935,11 +1093,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: PageView(
                             physics: const BouncingScrollPhysics(),
                             controller: pageController,
-                            children: [
+                            children: const [
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
-                                children: const [
+                                children: [
                                   PaymentMethodsWidget(
                                     icon: Icons.book_online_outlined,
                                     text2: 'Balance &',
@@ -973,7 +1131,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
-                                children: const [
+                                children: [
                                   PaymentMethodsWidget(
                                     icon: Icons.payment_outlined,
                                     text2: 'Paytm',
@@ -1246,8 +1404,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             'Loans & Credit Cards',
                             style: TextStyle(
@@ -1369,10 +1527,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   LoansContainerWidget(
                                     icon: Icons.currency_rupee,
                                     text1: 'Paise ki tension?',
@@ -1403,8 +1561,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             'Featured',
                             style: TextStyle(
@@ -1443,8 +1601,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             'Paytm Money - Your Investment partner',
                             style: TextStyle(
@@ -1565,10 +1723,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   LoansContainerWidget(
                                     icon: Icons.money,
                                     text1: 'Trusted by 1.4+ Crore',
@@ -1615,8 +1773,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             'Ticket Booking',
                             style: TextStyle(
@@ -1770,10 +1928,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Column(
+                              const Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   LoansContainerWidget(
                                     icon: Icons.currency_exchange_outlined,
                                     text1: 'Get 100% ticket refund',
@@ -1822,12 +1980,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: Colors.grey.shade300),
                     ),
-                    child: Column(
+                    child: const Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 15, left: 15),
+                          padding: EdgeInsets.only(top: 15, left: 15),
                           child: Row(
-                            children: const [
+                            children: [
                               Text(
                                 'Deals & Cashback',
                                 style: TextStyle(
@@ -1840,10 +1998,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               PaymentMethodsWidget(
                                 icon: Icons.money,
                                 text2: 'Cashback &',
@@ -1871,10 +2029,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 5,
                         ),
-                        const BottomBlueContainerWIdget(
+                        BottomBlueContainerWIdget(
                           text: 'Get 75% off on Clovia with Cashback Points',
                           containerColor: false,
                         ),
@@ -1889,8 +2047,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     children: [
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             'Promotion',
                             style: TextStyle(
@@ -1928,14 +2086,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(color: Colors.grey.shade300),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 15),
                       child: Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 15),
+                            padding: EdgeInsets.only(left: 15),
                             child: Row(
-                              children: const [
+                              children: [
                                 Text(
                                   'First Games by Paytm',
                                   style: TextStyle(
@@ -1949,7 +2107,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               PaymentMethodsWidget(
                                 icon: Icons.sd_card_sharp,
                                 text2: 'Rummy',
@@ -1985,10 +2143,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: Image.asset('assets/images/paytm_image.jpg'),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
-                    children: const [
+                    children: [
                       Text(
                         'Do More with Paytm',
                         style: TextStyle(
@@ -2003,9 +2161,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     UpiMoneyTransferWidget(
                       icon: Icons.health_and_safety,
                       text1: 'Paytm',

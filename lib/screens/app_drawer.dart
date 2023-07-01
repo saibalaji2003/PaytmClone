@@ -1,69 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:paytmclone/common_widgets/drawer_list_widget.dart';
 import 'package:paytmclone/models/drawer_listview.dart';
 import 'package:paytmclone/screens/app_drawer/become_a_merchant.dart';
 import 'package:paytmclone/screens/app_drawer/orders_and_bookings.dart';
 
-class AppDrawerWidget extends StatelessWidget {
+class AppDrawerWidget extends StatefulWidget {
   const AppDrawerWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    List<DrawerListModel> drawerListModelList = [
-      DrawerListModel(
-        icon: Icons.question_mark_outlined,
-        text1: 'Help & Support',
-        text2: 'Customer Supoort, Your Queries, Frequently Asked Questions',
-      ),
-      DrawerListModel(
-        icon: Icons.currency_rupee,
-        text1: 'UPI & Pay,ment Settings',
-        text2:
-            'Change UPI PIN, Linked Bank Accounts, Automatic Payments & Subscriptions, Other Accounts',
-      ),
-      DrawerListModel(
-        icon: Icons.card_giftcard,
-        text1: 'Orders & Bookings',
-        text2: 'Recharge, Bill Payments, Shopping, Movies, Travel & Others',
-        navigatorScreen: const OrdersAndBookingsScreen(),
-      ),
-      DrawerListModel(
-        icon: Icons.money,
-        text1: 'Cashback & Offers',
-        text2: 'Scratchcards, Cashback Points, Vouchers, and Offers',
-      ),
-      DrawerListModel(
-        icon: Icons.mobile_friendly_outlined,
-        text1: 'Tap to Pay',
-        text2:
-            'Activate new or manage existing cards. Check transaction history for activated cards',
-      ),
-      DrawerListModel(
-        icon: Icons.person_2_outlined,
-        text1: 'Profile Settings',
-        text2: 'Crediit at 0% interest',
-      ),
-      DrawerListModel(
-        icon: Icons.question_mark_outlined,
-        text1: 'Help & Support',
-        text2: 'Customer Supoort, Your Queries, Frequently Asked Questions',
-      ),
-      DrawerListModel(
-        icon: Icons.currency_exchange_outlined,
-        text1: 'Instant Personal Loan',
-        text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
-      ),
-      DrawerListModel(
-        icon: Icons.manage_accounts_outlined,
-        text1: 'Become a Merchant',
-        text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
-        isDividerShown: false,
-        navigatorScreen: const BecomeAMerchantScreen(),
-      ),
-    ];
+  State<AppDrawerWidget> createState() => _AppDrawerWidgetState();
+}
 
+class _AppDrawerWidgetState extends State<AppDrawerWidget> {
+  List<DrawerListModel> drawerListModelList = [
+    DrawerListModel(
+      icon: Icons.question_mark_outlined,
+      text1: 'Help & Support',
+      text2: 'Customer Supoort, Your Queries, Frequently Asked Questions',
+    ),
+    DrawerListModel(
+      icon: Icons.currency_rupee,
+      text1: 'UPI & Pay,ment Settings',
+      text2:
+          'Change UPI PIN, Linked Bank Accounts, Automatic Payments & Subscriptions, Other Accounts',
+    ),
+    DrawerListModel(
+      icon: Icons.card_giftcard,
+      text1: 'Orders & Bookings',
+      text2: 'Recharge, Bill Payments, Shopping, Movies, Travel & Others',
+      navigatorScreen: const OrdersAndBookingsScreen(),
+    ),
+    DrawerListModel(
+      icon: Icons.money,
+      text1: 'Cashback & Offers',
+      text2: 'Scratchcards, Cashback Points, Vouchers, and Offers',
+    ),
+    DrawerListModel(
+      icon: Icons.mobile_friendly_outlined,
+      text1: 'Tap to Pay',
+      text2:
+          'Activate new or manage existing cards. Check transaction history for activated cards',
+    ),
+    DrawerListModel(
+      icon: Icons.person_2_outlined,
+      text1: 'Profile Settings',
+      text2: 'Crediit at 0% interest',
+    ),
+    DrawerListModel(
+      icon: Icons.question_mark_outlined,
+      text1: 'Help & Support',
+      text2: 'Customer Supoort, Your Queries, Frequently Asked Questions',
+    ),
+    DrawerListModel(
+      icon: Icons.currency_exchange_outlined,
+      text1: 'Instant Personal Loan',
+      text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
+    ),
+    DrawerListModel(
+      icon: Icons.manage_accounts_outlined,
+      text1: 'Become a Merchant',
+      text2: '₹3 Lakh tak, bus 2mins mein, Get now!',
+      isDividerShown: false,
+      navigatorScreen: const BecomeAMerchantScreen(),
+    ),
+  ];
+  void copyToClipboard(String text) {
+    Clipboard.setData(ClipboardData(text: text));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
         primary: true,
@@ -89,9 +98,9 @@ class AppDrawerWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
                               'Vishwanath Sai Balaji',
                               style: TextStyle(
@@ -114,8 +123,8 @@ class AppDrawerWidget extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
+                          children: [
+                            const Text(
                               'UPI ID: 9573053883@paytm',
                               style: TextStyle(
                                 color: Colors.black,
@@ -123,15 +132,40 @@ class AppDrawerWidget extends StatelessWidget {
                                 fontSize: 15,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text(
-                              'Copy',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                // fontWeight: FontWeight.bold,
-                                fontSize: 15,
+                            GestureDetector(
+                              onTap: () {
+                                String textToCopy = "9573053883@paytm";
+                                copyToClipboard(textToCopy);
+                                debugPrint('Copied to clipboard: $textToCopy');
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    animation: kAlwaysDismissedAnimation,
+                                    content: Row(
+                                      children: [
+                                        Text(
+                                          'Copied to Clipboard',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        Icon(
+                                          Icons.check,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                    backgroundColor: Colors.black,
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Copy',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
                               ),
                             ),
                           ],
@@ -191,9 +225,9 @@ class AppDrawerWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                             border: Border.all(color: Colors.blue),
                           ),
-                          child: Row(
+                          child: const Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.share,
                                 color: Colors.blue,
@@ -299,10 +333,10 @@ class AppDrawerWidget extends StatelessWidget {
                     const SizedBox(
                       width: 7,
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             'Hide your phone number from UPI ID',
                             style: TextStyle(
@@ -333,9 +367,9 @@ class AppDrawerWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.blue),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.add,
                             color: Colors.blue,
