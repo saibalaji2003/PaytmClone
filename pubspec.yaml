@@ -76,6 +76,7 @@ flutter_native_splash:
   color_dark: "#ffffff"
   image_dark: assets/images/paytm_logo.png
   branding_dark: assets/images/paytm_logo2.png
+  
 
   android_12:
     image: assets/images/paytm_logo.png

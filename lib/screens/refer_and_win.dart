@@ -80,12 +80,12 @@ class ReferAndWinScreen extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 10),
+            padding: EdgeInsets.only(right: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
                   'Know More',
                   style: TextStyle(
@@ -217,9 +217,9 @@ class ReferAndWinScreen extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Column(
+                      const Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           LoansContainerWidget(
                             icon: Icons.currency_rupee,
                             text1: 'Win Flat ₹151 Cashback',
@@ -278,8 +278,8 @@ class ReferAndWinScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             Icon(
                               Icons.telegram_outlined,
                               color: Color(0xff092C6C),
@@ -324,8 +324,8 @@ class ReferAndWinScreen extends StatelessWidget {
                             color: Colors.grey.shade300,
                           ),
                         ),
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             Icon(
                               Icons.telegram_outlined,
                               color: Color(0xff092C6C),
@@ -364,6 +364,9 @@ class ReferAndWinScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 15,
                   ),
                   Row(
                     children: [
