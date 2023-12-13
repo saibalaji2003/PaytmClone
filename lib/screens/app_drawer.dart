@@ -4,6 +4,7 @@ import 'package:paytmclone/common_widgets/drawer_list_widget.dart';
 import 'package:paytmclone/models/drawer_listview.dart';
 import 'package:paytmclone/screens/app_drawer/become_a_merchant.dart';
 import 'package:paytmclone/screens/app_drawer/orders_and_bookings.dart';
+import 'package:paytmclone/screens/app_drawer/share_qr_login_page.dart';
 
 class AppDrawerWidget extends StatefulWidget {
   const AppDrawerWidget({
@@ -217,34 +218,44 @@ class _AppDrawerWidgetState extends State<AppDrawerWidget> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 5),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(25),
-                            border: Border.all(color: Colors.blue),
-                          ),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.share,
-                                color: Colors.blue,
-                                size: 17,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPageScreen(),
                               ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                'Share QR',
-                                style: TextStyle(
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25),
+                              border: Border.all(color: Colors.blue),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.share,
                                   color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
+                                  size: 17,
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  'Share QR',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(
